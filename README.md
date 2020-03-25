@@ -1,2 +1,2 @@
-# MovieTheater
-Java Final Project - Movie theater system
+# MovieTheatre
+Java Final Project - Movie Theatre system
