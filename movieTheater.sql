@@ -6,13 +6,14 @@ id_category int primary key auto_increment not null,
 category_name varchar (50) not null
 );
 
+
 create table movie (
 id_movie int primary key auto_increment not null,
 movie_name varchar(50) not null,
 id_category int not null,
 director varchar (50) not null,
 actor varchar (50) not null,
-movie_year varchar (50) not null,
+movie_year int not null,
 runtime_minutes int not null,
 rate varchar (50) not null,
 FOREIGN KEY (id_category) REFERENCES category(id_category)
