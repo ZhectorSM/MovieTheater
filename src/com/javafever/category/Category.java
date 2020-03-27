@@ -2,10 +2,11 @@ package com.javafever.category;
 
 public class Category {
 
+	// Attributes
 	private int idCategory;
 	private String categoryName;
 
-	// Getter and Setters
+	// Getter and setters
 	public int getIdCategory() {
 		return idCategory;
 	}
@@ -20,9 +21,9 @@ public class Category {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
-
 	}
 
+	// hashcode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -30,10 +31,9 @@ public class Category {
 		result = prime * result + ((categoryName == null) ? 0 : categoryName.hashCode());
 		result = prime * result + idCategory;
 		return result;
-
-		// equal
 	}
 
+	// equals
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -51,10 +51,9 @@ public class Category {
 		if (idCategory != other.idCategory)
 			return false;
 		return true;
-
 	}
 
-	// String
+	// toString
 	@Override
 	public String toString() {
 		return "Category [idCategory=" + idCategory + ", categoryName=" + categoryName + "]";
