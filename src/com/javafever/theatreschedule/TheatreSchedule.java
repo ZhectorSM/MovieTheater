@@ -1,6 +1,6 @@
 package com.javafever.theatreschedule;
 
-import java.time.LocalDateTime; // Import the LocalDateTime class
+import java.time.LocalDateTime;
 
 public class TheatreSchedule {
 
