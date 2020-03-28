@@ -1,6 +1,6 @@
-package com.javafever.customer;
+package com.javafever.loyalprograms;
 
-public class loyalPrograms {
+public class LoyalPrograms {
 	private int idLoyalProgram;
 	private float discount;
 	private  int minimumPoints;
@@ -39,7 +39,7 @@ public class loyalPrograms {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		loyalPrograms other = (loyalPrograms) obj;
+		LoyalPrograms other = (LoyalPrograms) obj;
 		if (Float.floatToIntBits(discount) != Float.floatToIntBits(other.discount))
 			return false;
 		if (idLoyalProgram != other.idLoyalProgram)
