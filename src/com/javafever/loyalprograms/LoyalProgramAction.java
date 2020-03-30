@@ -2,6 +2,8 @@ package com.javafever.loyalprograms;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.javafever.category.Category;
@@ -38,10 +40,34 @@ public class LoyalProgramAction extends EntityActions<LoyalPrograms> {
 	}
 
 	@Override
-	protected List<LoyalPrograms> read() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<LoyalPrograms> read() {
+
+		List<LoyalPrograms> lstLoyalPrograms = new ArrayList<>();
+
+		try {
+
+			Connection conn = DbConector.getConnection();// Get the connection from the db conector
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM loyal_program");// Prepare
+			ResultSet result = ps.executeQuery();// Execute query for select
+
+			while (result.next()) {
+
+				LoyalPrograms loyalprograms = new LoyalPrograms();// Creating a list
+				loyalprograms.setIdLoyalProgram(result.getInt(1));// Get the int value of the column 1
+				loyalprograms.setDiscount(result.getFloat(2));
+				loyalprograms.setMinimumPoints(result.getInt(3));// Get the String value of the column 2
+
+				lstLoyalPrograms.add(loyalprograms);// Add element to the list
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
+		return lstLoyalPrograms;
+
 	}
+
 
 	@Override
 	protected boolean update(LoyalPrograms element) {
@@ -50,8 +76,24 @@ public class LoyalProgramAction extends EntityActions<LoyalPrograms> {
 	}
 
 	@Override
-	protected boolean delete(LoyalPrograms element) {
-		// TODO Auto-generated method stub
+	public boolean delete(LoyalPrograms element) {
+		try {
+
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM loyal_program where id_loyal_program = ?");
+
+			ps.setInt(1, element.getIdLoyalProgram());
+
+			int success = ps.executeUpdate();
+
+			if (success > 0) {// If the operation was succesful we return true
+				return true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
 		return false;
 	}
 

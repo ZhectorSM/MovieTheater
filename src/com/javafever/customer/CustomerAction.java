@@ -2,6 +2,8 @@ package com.javafever.customer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.javafever.connection.DbConector;
@@ -38,9 +40,32 @@ public class CustomerAction extends EntityActions<Customer>  {
 	}
 
 	@Override
-	protected List<Customer> read() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Customer> read() {
+
+		List<Customer> lstCustomer = new ArrayList<>();
+
+		try {
+
+			Connection conn = DbConector.getConnection();// Get the connection from the db conector
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM customer");// Prepare
+			ResultSet result = ps.executeQuery();// Execute query for select
+
+			while (result.next()) {
+
+				Customer customer = new Customer();// Creating a list
+				customer.setIdCustomer(result.getInt(1));// Get the int value of the column 1
+				customer.setFirstName(result.getString(2));
+				customer.setLastName(result.getString(3));// Get the String value of the column 2
+
+				lstCustomer.add(customer);// Add element to the list
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
+		return lstCustomer;
+
 	}
 
 	@Override
@@ -50,9 +75,26 @@ public class CustomerAction extends EntityActions<Customer>  {
 	}
 
 	@Override
-	protected boolean delete(Customer element) {
-		// TODO Auto-generated method stub
+	public boolean delete(Customer element) {
+		try {
+
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM customer where id_customer = ?");
+
+			ps.setInt(1, element.getIdCustomer());
+
+			int success = ps.executeUpdate();
+
+			if (success > 0) {// If the operation was succesful we return true
+				return true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
 		return false;
 	}
 
 }
+
