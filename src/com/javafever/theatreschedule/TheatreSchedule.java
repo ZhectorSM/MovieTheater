@@ -105,4 +105,8 @@ public class TheatreSchedule {
 				+ ", idMovie=" + idMovie + ", price=" + price + ", seat=" + seat + "]";
 	}
 
+	// ESTO FUE AGREGADO POR SCHEDULE ACTION
+
+	// ESTO FUE AGREGADO POR SCHEDULE ACTION
+
 }

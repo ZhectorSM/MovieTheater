@@ -2,6 +2,9 @@ package com.javafever.theatreschedule;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.javafever.connection.DbConector;
@@ -40,20 +43,60 @@ public class ScheduleAction extends EntityActions<TheatreSchedule> {
 	}
 
 	@Override
-	protected List<TheatreSchedule> read() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TheatreSchedule> read() {
+
+		List<TheatreSchedule> lstSchedule = new ArrayList<>();
+
+		try {
+
+			Connection conn = DbConector.getConnection();// Get the connection from the db conector
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM theatre_schedule");// Prepare
+			ResultSet result = ps.executeQuery();// Execute query for select
+
+			while (result.next()) {
+
+				TheatreSchedule schedule = new TheatreSchedule();// Creating a list
+				schedule.setIdSchedule(result.getInt(1));// Get the int value of the column 1
+				schedule.setShowtime(result.getObject(2, LocalDateTime.class));
+				schedule.setIdAuditorium(result.getInt(3));
+				schedule.setIdMovie(result.getInt(4));
+				schedule.setPrice(result.getFloat(5));
+				schedule.setSeat(result.getInt(6));
+
+				lstSchedule.add(schedule);// Add element to the list
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+		return lstSchedule;
 	}
 
 	@Override
 	protected boolean update(TheatreSchedule element) {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	@Override
-	protected boolean delete(TheatreSchedule element) {
-		// TODO Auto-generated method stub
+	public boolean delete(TheatreSchedule element) {
+
+		try {
+
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM theatre_schedule where id_schedule = ?");
+
+			ps.setInt(1, element.getIdSchedule());
+
+			int success = ps.executeUpdate();
+
+			if (success > 0) {// If the operation was succesful we return true
+				return true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
 		return false;
 	}
 }
