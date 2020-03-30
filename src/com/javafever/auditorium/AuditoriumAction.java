@@ -2,6 +2,8 @@ package com.javafever.auditorium;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.javafever.connection.DbConector;
@@ -38,9 +40,29 @@ public class AuditoriumAction extends EntityActions<Auditorium> {
 	}
 
 	@Override
-	protected List<Auditorium> read() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Auditorium> read() {
+
+		List<Auditorium> lstAuditorium = new ArrayList<>();
+
+		try {
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM auditorium");
+			ResultSet result = ps.executeQuery();
+
+			while (result.next()) {
+				Auditorium auditorium = new Auditorium();
+				auditorium.setIdAuditorium(result.getInt(1));
+				auditorium.setSeatTotal(result.getString(2));
+				auditorium.setVip(result.getBoolean(3));
+				auditorium.setIdLocation(result.getInt(4));
+
+				lstAuditorium.add(auditorium);
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
+		return lstAuditorium;
 	}
 
 	@Override
@@ -50,9 +72,21 @@ public class AuditoriumAction extends EntityActions<Auditorium> {
 	}
 
 	@Override
-	protected boolean delete(Auditorium element) {
-		// TODO Auto-generated method stub
+	public boolean delete(Auditorium element) {
+		try {
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM auditorium where id_auditorium = ?");
+
+			ps.setInt(1, element.getIdAuditorium());
+
+			int success = ps.executeUpdate();
+
+			if (success > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
 		return false;
 	}
-
 }

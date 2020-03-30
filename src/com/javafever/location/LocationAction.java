@@ -2,6 +2,8 @@ package com.javafever.location;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.javafever.connection.DbConector;
@@ -37,9 +39,31 @@ public class LocationAction extends EntityActions<Location> {
 	}
 
 	@Override
-	protected List<Location> read() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Location> read() {
+
+		List<Location> lstLocation = new ArrayList<>();
+
+		try {
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM location");
+
+			ResultSet result = ps.executeQuery();
+
+			while (result.next()) {
+
+				Location location = new Location();
+				location.setIdLocation(result.getInt(1));
+				location.setLocation(result.getString(2));
+				location.setAddress(result.getString(3));
+
+				lstLocation.add(location);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
+		return lstLocation;
 	}
 
 	@Override
@@ -49,8 +73,22 @@ public class LocationAction extends EntityActions<Location> {
 	}
 
 	@Override
-	protected boolean delete(Location element) {
-		// TODO Auto-generated method stub
+	public boolean delete(Location element) {
+		try {
+
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM location where id_location = ?");
+
+			ps.setInt(1, element.getIdLocation());
+
+			int success = ps.executeUpdate();
+
+			if (success > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
 		return false;
 	}
 
