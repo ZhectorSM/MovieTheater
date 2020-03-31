@@ -73,7 +73,32 @@ public class ScheduleAction extends EntityActions<TheatreSchedule> {
 	}
 
 	@Override
-	protected boolean update(TheatreSchedule element) {
+	public boolean update(TheatreSchedule element) {
+
+		int success;
+
+		try {
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement(
+					"UPDATE theatre_schedule SET showtime = ? , id_auditorium = ?, id_movie = ?, price = ?, seat = ? WHERE id_schedule = ?");
+
+			ps.setObject(1, element.getShowtime());
+			ps.setInt(2, element.getIdAuditorium());
+			ps.setInt(3, element.getIdMovie());
+			ps.setFloat(4, element.getPrice());
+			ps.setInt(5, element.getSeat());
+
+			ps.setInt(6, element.getIdSchedule());
+
+			success = ps.executeUpdate();
+
+			if (success > 0) {// Operation succesful
+				return true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
 
 		return false;
 	}

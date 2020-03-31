@@ -78,8 +78,35 @@ public class MovieAction extends EntityActions<Movie> {
 	}
 
 	@Override
-	protected boolean update(Movie element) {
-		// TODO Auto-generated method stub
+	public boolean update(Movie element) {
+
+		int success;
+
+		try {
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement(
+					"UPDATE movie SET movie_name = ? , id_category = ?, director = ?, actor = ?, movie_year = ?, runtime_minutes = ?, rate = ?  WHERE id_movie = ?");
+
+			ps.setString(1, element.getMovieName());
+			ps.setInt(2, element.getIdCategory());
+			ps.setString(3, element.getDirector());
+			ps.setString(4, element.getActor());
+			ps.setInt(5, element.getMovieYear());
+			ps.setInt(6, element.getRuntimeMinutes());
+			ps.setString(7, element.getRate());
+
+			ps.setInt(8, element.getIdMovie());
+
+			success = ps.executeUpdate();
+
+			if (success > 0) {// Operation succesful
+				return true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
 		return false;
 	}
 
