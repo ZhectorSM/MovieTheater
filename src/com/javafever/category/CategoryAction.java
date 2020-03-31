@@ -66,9 +66,29 @@ public class CategoryAction extends EntityActions<Category> {
 	}
 
 	@Override
-	protected boolean update(Category element) {
-		// TODO Auto-generated method stub
+	public boolean update(Category element) {
+
+		int success;
+
+		try {
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("UPDATE category SET category_name = ? WHERE id_category = ?");
+
+			ps.setString(1, element.getCategoryName());
+			ps.setInt(2, element.getIdCategory());
+
+			success = ps.executeUpdate();
+
+			if (success > 0) {// Operation succesful
+				return true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
 		return false;
+
 	}
 
 	@Override
