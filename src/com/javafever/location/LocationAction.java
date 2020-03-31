@@ -67,8 +67,27 @@ public class LocationAction extends EntityActions<Location> {
 	}
 
 	@Override
-	protected boolean update(Location element) {
-		// TODO Auto-generated method stub
+	public boolean update(Location element) {
+		int success;
+
+		try {
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn // update location set location = "Cineplex",address = "Bunkyoku" where
+										// id_location = 1;
+					.prepareStatement("UPDATE location SET location = ?, address = ? WHERE id_location = ?");
+
+			ps.setString(1, element.getLocation());
+			ps.setString(2, element.getAddress());
+			ps.setInt(3, element.getIdLocation());
+
+			success = ps.executeUpdate();
+
+			if (success > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
 		return false;
 	}
 

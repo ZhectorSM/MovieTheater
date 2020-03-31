@@ -9,7 +9,7 @@ public class LocationDeleteTest {
 
 		LocationAction locAction = new LocationAction();
 		Location myLocation = new Location();
-		myLocation.setIdLocation(4);
+		myLocation.setIdLocation(8);
 
 		boolean success = locAction.delete(myLocation);
 
