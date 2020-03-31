@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class DbConector {
 
-	private static java.sql.Connection conn;	
-	private static final String URL = "jdbc:mysql://localhost:8889/movietheatre?serverTimezone=UTC";
-	private static final String USER = "aki";
-	private static final String PWD = "438570";
+	private static java.sql.Connection conn;
+	private static final String URL = "jdbc:mysql://localhost:3306/movietheatre?serverTimezone=PST";
+	private static final String USER = "zhectorSM";
+	private static final String PWD = "zhectorSM";
 
 	private DbConector() {
 	}
@@ -26,7 +26,7 @@ public class DbConector {
 				}
 
 			} catch (Exception e) {
-				System.out.println("Database connection failed : " + e.getMessage());				
+				System.out.println("Database connection failed : " + e.getMessage());
 			}
 			return conn;
 		} else {// If the connection exist and is valid return same connection
