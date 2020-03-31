@@ -6,10 +6,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< HEAD
+
 	<classpathentry kind="lib" path="/Applications/mysql-connector-java-8.0.19.jar"/>
-=======
-	<classpathentry kind="lib" path="/Users/shouko/Documents/mysql_java/mysql-connector-java-8.0.19.jar"/>
->>>>>>> origin/sachiko
+
 	<classpathentry kind="output" path="bin"/>
 </classpath>
