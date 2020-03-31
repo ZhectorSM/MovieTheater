@@ -10,7 +10,7 @@ public class AuditoriumInsertionTest {
 		Auditorium myAuditorium = new Auditorium();
 		myAuditorium.setSeatTotal("50");
 		myAuditorium.setVip(true);
-		myAuditorium.setIdLocation(1);
+		myAuditorium.setIdLocation(5);
 		System.out.println(myAuditorium);
 
 		AuditoriumAction audAction = new AuditoriumAction();

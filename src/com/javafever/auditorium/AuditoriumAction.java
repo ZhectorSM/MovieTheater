@@ -66,8 +66,25 @@ public class AuditoriumAction extends EntityActions<Auditorium> {
 	}
 
 	@Override
-	protected boolean update(Auditorium element) {
-		// TODO Auto-generated method stub
+	public boolean update(Auditorium element) {
+		int success;
+
+		try {
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn
+					.prepareStatement("UPDATE auditorium SET seat_total = ?, vip = ? WHERE id_auditorium = ?");
+			ps.setString(1, element.getSeatTotal());
+			ps.setBoolean(2, element.isVip());
+			ps.setInt(3, element.getIdAuditorium());
+
+			success = ps.executeUpdate();
+
+			if (success > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
 		return false;
 	}
 

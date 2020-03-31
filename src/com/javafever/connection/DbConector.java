@@ -22,7 +22,7 @@ public class DbConector {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				conn = DriverManager.getConnection(URL, USER, PWD);
 				if (conn != null) {
-					System.out.println("Database connected succesfully.");
+//					System.out.println("Database connected succesfully.");
 				}
 
 			} catch (Exception e) {
