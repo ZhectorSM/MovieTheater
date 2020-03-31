@@ -26,7 +26,7 @@ public class DbConector {
 				}
 
 			} catch (Exception e) {
-				System.out.println("Database connection failed : " + e.getMessage());
+				System.out.println("Database connection failed : " + e.getMessage());				
 			}
 			return conn;
 		} else {// If the connection exist and is valid return same connection
