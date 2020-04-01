@@ -11,7 +11,7 @@ public class ScheduleController {
 
 	public void scheduleMenu() {
 
-		System.out.println("**Category Menu**");
+		System.out.println("**Schedule Menu**");
 		System.out.println("1 = Create new Schedule");
 		System.out.println("2 = List Schedules");
 		System.out.println("3 = Update a Schedule");
@@ -64,33 +64,27 @@ public class ScheduleController {
 
 		Scanner input = new Scanner(System.in);
 		System.out.println("*Add new Schedule*");
-		// System.out.println("Type the Movie name:");
-		// System.out.println("Type the Id Category:");
-		// System.out.println("Type the Director:");
-		// System.out.println("Type the Actor:");
-		// System.out.println("Type the Movie Year:");
-		// System.out.println("Type the Runtime Minutes:");
-		// System.out.println("Type the Rate:");
 
 		TheatreSchedule mySchedule = new TheatreSchedule();
-
+		// Setting values
 		System.out.println("Type the showtime: yyyy-MM-dd'T'HH:mm:ss");
-		// DateTimeFormatter fmt =
-		// DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
-		// fmt = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
-		// System.out.println("Medium Datetime: " + fmt.format(ldt));
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-		String userdate = input.nextLine();
+		String userdate = input.nextLine().trim();
+		input.nextLine();
 		LocalDateTime ldt = LocalDateTime.parse(userdate, formatter);
-		mySchedule.setShowtime(ldt);// Setting values
+		mySchedule.setShowtime(ldt);
 		System.out.println("Type the Id Auditorium:");
 		mySchedule.setIdAuditorium(input.nextInt());
+		input.nextLine();
 		System.out.println("Type the Id Movie:");
 		mySchedule.setIdMovie(input.nextInt());
+		input.nextLine();
 		System.out.println("Type the new Price:");
 		mySchedule.setPrice(input.nextFloat());
+		input.nextLine();
 		System.out.println("Type the new Movie Year:");
 		mySchedule.setSeat(input.nextInt());
+		input.nextLine();
 
 		ScheduleAction schAction = new ScheduleAction();// Creating actions obj
 		boolean success = schAction.create(mySchedule);// Executing operation
@@ -110,7 +104,7 @@ public class ScheduleController {
 		TheatreSchedule myNewSchedule = new TheatreSchedule();
 		ScheduleAction schAction = new ScheduleAction();
 
-		// Get list of categories
+		// Get list of schedules
 		List<TheatreSchedule> lstSchedules = schAction.read();
 
 		Scanner input = new Scanner(System.in);
@@ -118,8 +112,8 @@ public class ScheduleController {
 
 		System.out.println("Type the ID of the Schedule:");
 		int idSchSelected = input.nextInt();
-
-		// Looking for the category
+		input.nextLine();
+		// Looking for the schedules
 		boolean exists = false;
 		for (TheatreSchedule sch : lstSchedules) {
 			if (sch.getIdSchedule() == idSchSelected) {
@@ -127,28 +121,32 @@ public class ScheduleController {
 			}
 		}
 
-		if (!exists) {// Id the category does not exist
+		if (!exists) {// Id the schedules does not exist
 			System.out.println("Schedule does not exist.");
 			input.close();
 			return; // finish the method execution
 		}
 
 		myNewSchedule.setIdSchedule(idSchSelected);
-
+		// Setting the new information
 		System.out.println("Type the showtime: yyyy-MM-dd'T'HH:mm:ss");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-		String userdate1 = input.nextLine();
+		String userdate1 = input.nextLine().trim();
+		input.nextLine();
 		LocalDateTime ldt1 = LocalDateTime.parse(userdate1, formatter);
-		myNewSchedule.setShowtime(ldt1);// Setting the new name
+		myNewSchedule.setShowtime(ldt1);
 		System.out.println("Type the new Id Category:");
 		myNewSchedule.setIdAuditorium(input.nextInt());
+		input.nextLine();
 		System.out.println("Type the new Id Movie:");
 		myNewSchedule.setIdMovie(input.nextInt());
+		input.nextLine();
 		System.out.println("Type the new Price:");
 		myNewSchedule.setPrice(input.nextFloat());
+		input.nextLine();
 		System.out.println("Type the new Movie Year:");
 		myNewSchedule.setSeat(input.nextInt());
-
+		input.nextLine();
 		boolean success = schAction.update(myNewSchedule);
 
 		if (success) {
@@ -167,7 +165,7 @@ public class ScheduleController {
 		TheatreSchedule mySchedule = new TheatreSchedule();
 		ScheduleAction schAction = new ScheduleAction();
 
-		// Get list of categories
+		// Get list of schedules
 		List<TheatreSchedule> lstSchedules = schAction.read();
 
 		Scanner input = new Scanner(System.in);
@@ -175,8 +173,9 @@ public class ScheduleController {
 
 		System.out.println("Type the ID of the Schedule:");
 		int idSchSelected = input.nextInt();
+		input.nextLine();
 
-		// Looking for the category
+		// Looking for the schedules
 		boolean exists = false;
 		for (TheatreSchedule sch : lstSchedules) {
 			if (sch.getIdSchedule() == idSchSelected) {
@@ -185,13 +184,13 @@ public class ScheduleController {
 			}
 		}
 
-		if (!exists) {// Id the category does not exist
+		if (!exists) {// Id the schedules does not exist
 			System.out.println("Schedule does not exist.");
 			input.close();
 			return; // finish the method execution
 		}
 
-		boolean success = schAction.delete(mySchedule);// delete category
+		boolean success = schAction.delete(mySchedule);// delete schedules
 
 		if (success) {
 			System.out.println("Schedule deleted succcesfully");
@@ -208,8 +207,8 @@ public class ScheduleController {
 		System.out.println("ENTER to go to menu");
 		System.out.println();
 		Scanner input = new Scanner(System.in);
-		String readString = input.nextLine();
-
+		String readString = input.nextLine().trim();
+		input.nextLine();
 		while (readString != null) {
 			System.out.println(readString);
 
