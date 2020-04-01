@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
+import com.javafever.main.MovieTheatreMain;
+
 public class ScheduleController {
 
 	public void scheduleMenu() {
@@ -34,7 +36,7 @@ public class ScheduleController {
 			deleteSchedule();
 			break;
 		case 0:
-
+			MovieTheatreMain.showAdminMenu();
 			break;
 		default:
 			scheduleMenu();
@@ -78,7 +80,7 @@ public class ScheduleController {
 		// fmt = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
 		// System.out.println("Medium Datetime: " + fmt.format(ldt));
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-		String userdate = input.next();
+		String userdate = input.nextLine();
 		LocalDateTime ldt = LocalDateTime.parse(userdate, formatter);
 		mySchedule.setShowtime(ldt);// Setting values
 		System.out.println("Type the Id Auditorium:");
@@ -135,7 +137,7 @@ public class ScheduleController {
 
 		System.out.println("Type the showtime: yyyy-MM-dd'T'HH:mm:ss");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-		String userdate1 = input.next();
+		String userdate1 = input.nextLine();
 		LocalDateTime ldt1 = LocalDateTime.parse(userdate1, formatter);
 		myNewSchedule.setShowtime(ldt1);// Setting the new name
 		System.out.println("Type the new Id Category:");

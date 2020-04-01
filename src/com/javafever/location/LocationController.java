@@ -3,6 +3,8 @@ package com.javafever.location;
 import java.util.List;
 import java.util.Scanner;
 
+import com.javafever.main.MovieTheatreMain;
+
 public class LocationController {
 
 	public void locationMenu() {
@@ -11,6 +13,7 @@ public class LocationController {
 		System.out.println("2 = List Locations");
 		System.out.println("3 = Update a location");
 		System.out.println("4 = Delete a location");
+		System.out.println("0 = Go to Admin Menu");
 		System.out.println("Choose an option...");
 
 		Scanner input = new Scanner(System.in);
@@ -34,7 +37,7 @@ public class LocationController {
 			break;
 
 		case 0:
-
+			MovieTheatreMain.showAdminMenu();
 			break;
 
 		default:
@@ -50,10 +53,10 @@ public class LocationController {
 		System.out.println("Type the location name");
 
 		Location myLocation = new Location();
-		myLocation.setLocation(input.next());
+		myLocation.setLocation(input.nextLine());
 
 		System.out.println("Type the address");
-		myLocation.setAddress(input.next());
+		myLocation.setAddress(input.nextLine());
 
 		LocationAction locAction = new LocationAction();
 		boolean success = locAction.create(myLocation);
@@ -109,10 +112,10 @@ public class LocationController {
 		myNewLocation.setIdLocation(idLocSelected);
 
 		System.out.println("Type the new location name: ");
-		myNewLocation.setLocation(input.next());
+		myNewLocation.setLocation(input.nextLine());
 
 		System.out.println("Type the new address: ");
-		myNewLocation.setAddress(input.next());
+		myNewLocation.setAddress(input.nextLine());
 
 		boolean success = locAction.update(myNewLocation);
 		if (success) {

@@ -3,6 +3,8 @@ package com.javafever.category;
 import java.util.List;
 import java.util.Scanner;
 
+import com.javafever.main.MovieTheatreMain;
+
 public class CategoryController {
 
 	public void categoryMenu() {
@@ -12,7 +14,7 @@ public class CategoryController {
 		System.out.println("2 = List Categories");
 		System.out.println("3 = Update a Category");
 		System.out.println("4 = Delete a Category");
-		System.out.println("0 = Go to Main Menu");
+		System.out.println("0 = Go to Admin Menu");
 		System.out.println("Choose an option...");
 
 		Scanner input = new Scanner(System.in);
@@ -32,7 +34,7 @@ public class CategoryController {
 			deleteCategory();
 			break;
 		case 0:
-
+			MovieTheatreMain.showAdminMenu();
 			break;
 		default:
 			categoryMenu();
@@ -61,7 +63,7 @@ public class CategoryController {
 		System.out.println("Type the Category name:");
 
 		Category myCategory = new Category();
-		myCategory.setCategoryName(input.next());// Setting values
+		myCategory.setCategoryName(input.nextLine());// Setting values
 
 		CategoryAction catAction = new CategoryAction();// Creating actions obj
 		boolean success = catAction.create(myCategory);// Executing operation
@@ -107,7 +109,7 @@ public class CategoryController {
 		myNewCategory.setIdCategory(idCatSelected);
 
 		System.out.println("Type the new Name:");
-		myNewCategory.setCategoryName(input.next());// Setting the new name
+		myNewCategory.setCategoryName(input.nextLine());// Setting the new name
 
 		boolean success = catAction.update(myNewCategory);
 

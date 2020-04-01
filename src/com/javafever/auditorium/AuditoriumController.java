@@ -3,6 +3,8 @@ package com.javafever.auditorium;
 import java.util.List;
 import java.util.Scanner;
 
+import com.javafever.main.MovieTheatreMain;
+
 public class AuditoriumController {
 
 	public void auditoriumMenu() {
@@ -12,6 +14,7 @@ public class AuditoriumController {
 		System.out.println("2 = List Auditorium");
 		System.out.println("3 = Update an auditorium");
 		System.out.println("4 = Delete an auditorium");
+		System.out.println("0 = Go to Admin Menu");
 		System.out.println("Choose an option...");
 
 		Scanner input = new Scanner(System.in);
@@ -35,7 +38,7 @@ public class AuditoriumController {
 			break;
 
 		case 0:
-
+			MovieTheatreMain.showAdminMenu();
 			break;
 
 		default:
