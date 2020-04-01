@@ -72,8 +72,7 @@ public class LocationAction extends EntityActions<Location> {
 
 		try {
 			Connection conn = DbConector.getConnection();
-			PreparedStatement ps = conn // update location set location = "Cineplex",address = "Bunkyoku" where
-										// id_location = 1;
+			PreparedStatement ps = conn
 					.prepareStatement("UPDATE location SET location = ?, address = ? WHERE id_location = ?");
 
 			ps.setString(1, element.getLocation());

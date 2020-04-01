@@ -9,7 +9,7 @@ public class LocationController {
 
 	public void locationMenu() {
 		System.out.println("*Location Menu*");
-		System.out.println("1 = create new Location");
+		System.out.println("1 = Create new Location");
 		System.out.println("2 = List Locations");
 		System.out.println("3 = Update a location");
 		System.out.println("4 = Delete a location");
@@ -18,6 +18,7 @@ public class LocationController {
 
 		Scanner input = new Scanner(System.in);
 		int userChoice = input.nextInt();
+		input.nextLine();
 
 		switch (userChoice) {
 		case 1:
@@ -53,10 +54,10 @@ public class LocationController {
 		System.out.println("Type the location name");
 
 		Location myLocation = new Location();
-		myLocation.setLocation(input.nextLine());
+		myLocation.setLocation(input.nextLine().trim());
 
 		System.out.println("Type the address");
-		myLocation.setAddress(input.nextLine());
+		myLocation.setAddress(input.nextLine().trim());
 
 		LocationAction locAction = new LocationAction();
 		boolean success = locAction.create(myLocation);
@@ -78,7 +79,7 @@ public class LocationController {
 		List<Location> lstLocation = locAction.read();
 		System.out.println("*List of Location*");
 		for (Location loc : lstLocation) {
-			System.out.println(loc.getIdLocation() + loc.getLocation() + loc.getAddress());
+			System.out.println(loc.getIdLocation() + " " + loc.getLocation() + " " + loc.getAddress());
 		}
 		callLocationMenu();
 	}
@@ -95,6 +96,7 @@ public class LocationController {
 
 		System.out.println("Type a ID of the Location: ");
 		int idLocSelected = input.nextInt();
+		input.nextLine();
 
 		boolean exists = false;
 		for (Location loc : lstLocation) {
@@ -112,10 +114,10 @@ public class LocationController {
 		myNewLocation.setIdLocation(idLocSelected);
 
 		System.out.println("Type the new location name: ");
-		myNewLocation.setLocation(input.nextLine());
+		myNewLocation.setLocation(input.nextLine().trim());
 
 		System.out.println("Type the new address: ");
-		myNewLocation.setAddress(input.nextLine());
+		myNewLocation.setAddress(input.nextLine().trim());
 
 		boolean success = locAction.update(myNewLocation);
 		if (success) {
@@ -140,6 +142,7 @@ public class LocationController {
 
 		System.out.println("Type the ID of location you want to delete");
 		int idLocSelected = input.nextInt();
+		input.nextLine();
 
 		boolean exists = false;
 
@@ -172,7 +175,7 @@ public class LocationController {
 		System.out.println("ENTER to go to menu");
 		System.out.println();
 		Scanner input = new Scanner(System.in);
-		String readString = input.nextLine();
+		String readString = input.nextLine().trim();
 
 		while (readString != null) {
 			System.out.println(readString);
@@ -182,7 +185,7 @@ public class LocationController {
 			}
 
 			if (input.hasNextLine()) {
-				readString = input.nextLine();
+				readString = input.nextLine().trim();
 			} else {
 				readString = null;
 			}

@@ -174,6 +174,7 @@ public class MovieController {
 
 		System.out.println("Type the ID of the Movie:");
 		int idMovSelected = input.nextInt();
+		input.nextLine();
 
 		// Looking for the category
 		boolean exists = false;
