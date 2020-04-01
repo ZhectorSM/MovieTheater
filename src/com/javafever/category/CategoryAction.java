@@ -2,6 +2,8 @@ package com.javafever.category;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.javafever.connection.DbConector;
@@ -21,7 +23,7 @@ public class CategoryAction extends EntityActions<Category> {
 																											// the query
 			ps.setString(1, element.getCategoryName());// Set the values of the query (data to be inserted)
 
-			success = ps.executeUpdate();// Execute the query in the db
+			success = ps.executeUpdate();// Execute the query in the db update, insert,delete
 
 			if (success > 0) {// If the operation was succesful we return true
 				return true;
@@ -36,20 +38,78 @@ public class CategoryAction extends EntityActions<Category> {
 	}
 
 	@Override
-	protected List<Category> read() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Category> read() {
+
+		List<Category> lstCategory = new ArrayList<>();
+
+		try {
+
+			Connection conn = DbConector.getConnection();// Get the connection from the db conector
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM category");// Prepare
+			ResultSet result = ps.executeQuery();// Execute query for select
+
+			while (result.next()) {
+
+				Category category = new Category();// Creating a list
+				category.setIdCategory(result.getInt(1));// Get the int value of the column 1
+				category.setCategoryName(result.getString(2));// Get the String value of the column 2
+
+				lstCategory.add(category);// Add element to the list
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
+		return lstCategory;
+
 	}
 
 	@Override
-	protected boolean update(Category element) {
-		// TODO Auto-generated method stub
+	public boolean update(Category element) {
+
+		int success;
+
+		try {
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("UPDATE category SET category_name = ? WHERE id_category = ?");
+
+			ps.setString(1, element.getCategoryName());
+			ps.setInt(2, element.getIdCategory());
+
+			success = ps.executeUpdate();
+
+			if (success > 0) {// Operation succesful
+				return true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
 		return false;
+
 	}
 
 	@Override
-	protected boolean delete(Category element) {
-		// TODO Auto-generated method stub
+	public boolean delete(Category element) {
+		try {
+
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM category where id_category = ?");
+
+			ps.setInt(1, element.getIdCategory());
+
+			int success = ps.executeUpdate();
+
+			if (success > 0) {// If the operation was succesful we return true
+				return true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
 		return false;
 	}
 

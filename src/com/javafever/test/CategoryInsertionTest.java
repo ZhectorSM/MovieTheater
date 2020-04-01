@@ -9,7 +9,7 @@ public class CategoryInsertionTest {
 
 		// Create category object
 		Category myCategory = new Category();
-		myCategory.setCategoryName("Thriller");// Setting values
+		myCategory.setCategoryName("Romance");// Setting values
 		System.out.println(myCategory);// Printing info
 
 		CategoryAction catAction = new CategoryAction();// Creating actions obj

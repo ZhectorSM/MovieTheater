@@ -21,12 +21,25 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-<<<<<<< HEAD
+
+
 /bin/
-=======
+
+
 /.project
 
 
 .project
 .classpath
->>>>>>> origin/develop
+
+/.classpath
+.DS_Store
+/.DS_Store
+
+
+
+
+com/javafever/connection/DbConector.java
+DbConector.java
+
+
