@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 import com.javafever.auditorium.AuditoriumController;
 import com.javafever.category.CategoryController;
+import com.javafever.customer.CustomerController;
 import com.javafever.location.LocationController;
+import com.javafever.loyalprograms.LoyalProgramController;
 import com.javafever.movie.Movie;
 import com.javafever.movie.MovieAction;
 import com.javafever.movie.MovieController;
@@ -33,7 +35,7 @@ public class MovieTheatreMain {
 		System.out.println("Choose an option...");
 		Scanner input = new Scanner(System.in);
 		int userChoice = input.nextInt();
-
+		input.nextLine();
 		switch (userChoice) {
 
 		case 1:
@@ -59,9 +61,9 @@ public class MovieTheatreMain {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Type your user name ");
 		User user = new User();
-		user.setName(input.nextLine());
+		user.setName(input.nextLine().trim());
 		System.out.println("Type your password");
-		user.setPwd(input.nextLine());
+		user.setPwd(input.nextLine().trim());
 
 		// Get users of the database
 		UserAction catAction = new UserAction();
@@ -106,7 +108,7 @@ public class MovieTheatreMain {
 
 		Scanner input = new Scanner(System.in);
 		int adminChoice = input.nextInt();
-
+		input.nextLine();
 		switch (adminChoice) {
 		case 1:
 			CategoryController catControl = new CategoryController();
@@ -126,6 +128,8 @@ public class MovieTheatreMain {
 			audContol.auditoriumMenu();
 			break;
 		case 5:
+			CustomerController cusControl = new CustomerController();
+			cusControl.customerMenu();
 			break;
 
 		case 6:
@@ -134,7 +138,8 @@ public class MovieTheatreMain {
 			break;
 
 		case 7:
-
+			LoyalProgramController loyalControl = new LoyalProgramController();
+			loyalControl.LoyalProgramMenu();
 			break;
 		case 0:
 			showMainMenu();
@@ -160,7 +165,7 @@ public class MovieTheatreMain {
 
 		Scanner input = new Scanner(System.in);
 		int userChoice = input.nextInt();
-
+		input.nextLine();
 		switch (userChoice) {
 		case 1:
 			break;
@@ -213,7 +218,7 @@ public class MovieTheatreMain {
 		// Getting available schedule
 		ScheduleAction schAction = new ScheduleAction();
 		List<TheatreSchedule> lstSchedule = schAction.readByIdMovie(userIdMovie);
-
+		System.out.println("- Showtime -");
 		for (TheatreSchedule sch : lstSchedule) {
 			System.out.println(sch.getIdSchedule() + " " + sch.getShowtime());
 		}

@@ -19,7 +19,7 @@ public class CategoryController {
 
 		Scanner input = new Scanner(System.in);
 		int userChoice = input.nextInt();
-
+		input.nextLine();
 		switch (userChoice) {
 		case 1:
 			addCategory();
@@ -63,7 +63,7 @@ public class CategoryController {
 		System.out.println("Type the Category name:");
 
 		Category myCategory = new Category();
-		myCategory.setCategoryName(input.nextLine());// Setting values
+		myCategory.setCategoryName(input.nextLine().trim());// Setting values
 
 		CategoryAction catAction = new CategoryAction();// Creating actions obj
 		boolean success = catAction.create(myCategory);// Executing operation
@@ -91,7 +91,7 @@ public class CategoryController {
 
 		System.out.println("Type the ID of the Categoy:");
 		int idCatSelected = input.nextInt();
-
+		input.nextLine();
 		// Looking for the category
 		boolean exists = false;
 		for (Category cat : lstCategories) {
@@ -136,7 +136,7 @@ public class CategoryController {
 
 		System.out.println("Type the ID of the Categoy:");
 		int idCatSelected = input.nextInt();
-
+		input.nextLine();
 		// Looking for the category
 		boolean exists = false;
 		for (Category cat : lstCategories) {
@@ -164,12 +164,12 @@ public class CategoryController {
 		input.close();
 	}
 
-	public void callCategoryMenu() {
+	private void callCategoryMenu() {
 		System.out.println();
 		System.out.println("ENTER to go to menu");
 		System.out.println();
 		Scanner input = new Scanner(System.in);
-		String readString = input.nextLine();
+		String readString = input.nextLine().trim();
 
 		while (readString != null) {
 			System.out.println(readString);
@@ -179,7 +179,7 @@ public class CategoryController {
 			}
 
 			if (input.hasNextLine()) {
-				readString = input.nextLine();
+				readString = input.nextLine().trim();
 			} else {
 				readString = null;
 			}

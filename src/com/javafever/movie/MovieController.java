@@ -202,7 +202,7 @@ public class MovieController {
 		input.close();
 	}
 
-	public void callMovieMenu() {
+	private void callMovieMenu() {
 		System.out.println();
 		System.out.println("ENTER to go to menu");
 		System.out.println();

@@ -203,7 +203,7 @@ public class ScheduleController {
 		input.close();
 	}
 
-	public void callScheduleMenu() {
+	private void callScheduleMenu() {
 		System.out.println();
 		System.out.println("ENTER to go to menu");
 		System.out.println();

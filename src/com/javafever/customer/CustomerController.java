@@ -3,6 +3,8 @@ package com.javafever.customer;
 import java.util.List;
 import java.util.Scanner;
 
+import com.javafever.main.MovieTheatreMain;
+
 public class CustomerController {
 
 	public void customerMenu() {
@@ -12,7 +14,7 @@ public class CustomerController {
 		System.out.println("2 = List Customers");
 		System.out.println("3 = Update a Customer");
 		System.out.println("4 = Delete a Customer");
-		System.out.println("0 = Go to Main Menu");
+		System.out.println("0 = Go to Admin Menu");
 		System.out.println("Choose an option...");
 
 		Scanner input = new Scanner(System.in);
@@ -32,7 +34,7 @@ public class CustomerController {
 			deleteCustomer();
 			break;
 		case 0:
-
+			MovieTheatreMain.showAdminMenu();
 			break;
 		default:
 			customerMenu();
@@ -48,7 +50,7 @@ public class CustomerController {
 		List<Customer> lstCustomers = catAction.read();
 		System.out.println("*List of Custiomers*");
 		for (Customer cat : lstCustomers) {
-			System.out.println(cat.getIdCustomer() + " " + cat.getFirstName() + cat.getLastName());
+			System.out.println(cat.getIdCustomer() + " " + cat.getFirstName() + " " + cat.getLastName());
 		}
 
 		callCustomerMenu();
@@ -69,15 +71,14 @@ public class CustomerController {
 		myCustomer.setEmail(input.next());
 		System.out.println("Type the points:");
 		myCustomer.setPoints(input.nextInt());
-		
-		
+
 		CustomerAction catAction = new CustomerAction();// Creating actions obj
 		boolean success = catAction.create(myCustomer);// Executing operation
-		
+
 		if (success) {// If the operation was succesful
-			System.out.println("CastomerName inserted.");
+			System.out.println("Customer inserted.");
 		} else {
-			System.out.println("CastomerName insertion failed.");
+			System.out.println("Customer insertion failed.");
 		}
 
 		callCustomerMenu();
@@ -86,14 +87,14 @@ public class CustomerController {
 
 	public void updateCustomer() {
 
-		Customer myNewCustomer= new Customer();
+		Customer myNewCustomer = new Customer();
 		CustomerAction catAction = new CustomerAction();
 
 		// Get list of categories
 		List<Customer> lstCustomers = catAction.read();
 
 		Scanner input = new Scanner(System.in);
-		System.out.println("*Update a Castomer*");
+		System.out.println("*Update a Customer*");
 
 		System.out.println("Type the ID of the customer:");
 		int idCatSelected = input.nextInt();
@@ -107,13 +108,13 @@ public class CustomerController {
 		}
 
 		if (!exists) {// Id the category does not exist
-			System.out.println("Customername does not exist.");
+			System.out.println("Customer does not exist.");
 			input.close();
 			return; // finish the method execution
 		}
 
 		myNewCustomer.setIdCustomer(idCatSelected);
-		
+
 		System.out.println("*Add new Customer*");
 		System.out.println("Type the first name:");
 		myNewCustomer.setFirstName(input.next());
@@ -125,9 +126,7 @@ public class CustomerController {
 		myNewCustomer.setEmail(input.next());
 		System.out.println("Type the points:");
 		myNewCustomer.setPoints(input.nextInt());
-		
 
-		
 		boolean success = catAction.update(myNewCustomer);
 
 		if (success) {
@@ -149,9 +148,9 @@ public class CustomerController {
 		List<Customer> lstCustomers = catAction.read();
 
 		Scanner input = new Scanner(System.in);
-		System.out.println("*Delete a customername*");
+		System.out.println("*Delete a customer*");
 
-		System.out.println("Type the ID of the cutomername:");
+		System.out.println("Type the ID of the cutomer:");
 		int idCatSelected = input.nextInt();
 
 		// Looking for the category
@@ -164,7 +163,7 @@ public class CustomerController {
 		}
 
 		if (!exists) {// Id the category does not exist
-			System.out.println("Customername does not exist.");
+			System.out.println("Customer does not exist.");
 			input.close();
 			return; // finish the method execution
 		}
@@ -172,16 +171,16 @@ public class CustomerController {
 		boolean success = catAction.delete(myCustomer);// delete category
 
 		if (success) {
-			System.out.println("Customername deleted succcesfully");
+			System.out.println("Customer deleted succcesfully");
 		} else {
-			System.out.println("Customername deletion failed.");
+			System.out.println("Customer deletion failed.");
 		}
 
 		callCustomerMenu();
 		input.close();
 	}
 
-	public void callCustomerMenu() {
+	private void callCustomerMenu() {
 		System.out.println();
 		System.out.println("ENTER to go to menu");
 		System.out.println();
