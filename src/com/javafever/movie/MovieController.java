@@ -63,24 +63,20 @@ public class MovieController {
 
 		Scanner input = new Scanner(System.in);
 		System.out.println("*Add new Movie*");
-		// System.out.println("Type the Movie name:");
-		// System.out.println("Type the Id Category:");
-		// System.out.println("Type the Director:");
-		// System.out.println("Type the Actor:");
-		// System.out.println("Type the Movie Year:");
-		// System.out.println("Type the Runtime Minutes:");
-		// System.out.println("Type the Rate:");
 
 		Movie myMovie = new Movie();
 		System.out.println("Type the Movie name:");
-		myMovie.setMovieName(input.nextLine().trim());// Setting values
+		myMovie.setMovieName(input.nextLine().trim());
+		input.nextLine();
 		System.out.println("Type the Id Category:");
 		myMovie.setIdCategory(input.nextInt());
 		input.nextLine();
 		System.out.println("Type the Director:");
 		myMovie.setDirector(input.nextLine().trim());
+		input.nextLine();
 		System.out.println("Type the Actor:");
 		myMovie.setActor(input.nextLine().trim());
+		input.nextLine();
 		System.out.println("Type the Movie Year:");
 		myMovie.setMovieYear(input.nextInt());
 		input.nextLine();
@@ -89,6 +85,7 @@ public class MovieController {
 		input.nextLine();
 		System.out.println("Type the Rate:");
 		myMovie.setRate(input.nextLine().trim());
+		input.nextLine();
 
 		MovieAction movAction = new MovieAction();// Creating actions obj
 		boolean success = movAction.create(myMovie);// Executing operation
@@ -108,7 +105,7 @@ public class MovieController {
 		Movie myNewMovie = new Movie();
 		MovieAction movAction = new MovieAction();
 
-		// Get list of categories
+		// Get list of movies
 		List<Movie> lstMovies = movAction.read();
 
 		Scanner input = new Scanner(System.in);
@@ -116,8 +113,8 @@ public class MovieController {
 
 		System.out.println("Type the ID of the Movie:");
 		int idMovSelected = input.nextInt();
-
-		// Looking for the category
+		input.nextLine();
+		// Looking for the movies
 		boolean exists = false;
 		for (Movie mov : lstMovies) {
 			if (mov.getIdMovie() == idMovSelected) {
@@ -125,28 +122,35 @@ public class MovieController {
 			}
 		}
 
-		if (!exists) {// Id the category does not exist
+		if (!exists) {// Id the movies does not exist
 			System.out.println("Movie does not exist.");
 			input.close();
 			return; // finish the method execution
 		}
 
 		myNewMovie.setIdMovie(idMovSelected);
-
+		// Setting the new info
 		System.out.println("Type the new Name:");
-		myNewMovie.setMovieName(input.nextLine().trim());// Setting the new name
+		myNewMovie.setMovieName(input.nextLine().trim());
+		input.nextLine();
 		System.out.println("Type the new Id Category:");
 		myNewMovie.setIdCategory(input.nextInt());
+		input.nextLine();
 		System.out.println("Type the new Director:");
 		myNewMovie.setDirector(input.nextLine().trim());
+		input.nextLine();
 		System.out.println("Type the new Actor:");
 		myNewMovie.setActor(input.nextLine().trim());
+		input.nextLine();
 		System.out.println("Type the new Movie Year:");
 		myNewMovie.setMovieYear(input.nextInt());
+		input.nextLine();
 		System.out.println("Type the new Runtime Minutes:");
 		myNewMovie.setRuntimeMinutes(input.nextInt());
+		input.nextLine();
 		System.out.println("Type the new Rate:");
 		myNewMovie.setRate(input.nextLine().trim());
+		input.nextLine();
 
 		boolean success = movAction.update(myNewMovie);
 
@@ -166,7 +170,7 @@ public class MovieController {
 		Movie myMovie = new Movie();
 		MovieAction movAction = new MovieAction();
 
-		// Get list of categories
+		// Get list of movies
 		List<Movie> lstMovies = movAction.read();
 
 		Scanner input = new Scanner(System.in);
@@ -174,8 +178,9 @@ public class MovieController {
 
 		System.out.println("Type the ID of the Movie:");
 		int idMovSelected = input.nextInt();
+		input.nextLine();
 
-		// Looking for the category
+		// Looking for the movies
 		boolean exists = false;
 		for (Movie mov : lstMovies) {
 			if (mov.getIdMovie() == idMovSelected) {
@@ -184,13 +189,13 @@ public class MovieController {
 			}
 		}
 
-		if (!exists) {// Id the category does not exist
+		if (!exists) {// Id the movies does not exist
 			System.out.println("Movie does not exist.");
 			input.close();
 			return; // finish the method execution
 		}
 
-		boolean success = movAction.delete(myMovie);// delete category
+		boolean success = movAction.delete(myMovie);// delete movies
 
 		if (success) {
 			System.out.println("Movie deleted succcesfully");
@@ -208,6 +213,7 @@ public class MovieController {
 		System.out.println();
 		Scanner input = new Scanner(System.in);
 		String readString = input.nextLine().trim();
+		input.nextLine();
 
 		while (readString != null) {
 			System.out.println(readString);

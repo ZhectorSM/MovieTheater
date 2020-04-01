@@ -63,8 +63,10 @@ public class LoyalProgramController {
 		System.out.println("*Add new LoyalProgram*");
 		System.out.println("Type the Discount persent:");
 		myLoyalProgram.setDiscount(input.nextFloat());
+		input.nextLine();
 		System.out.println("Type the Minimum Points:");
 		myLoyalProgram.setMinimumPoints(input.nextInt());
+		input.nextLine();
 
 		LoyalProgramAction catAction = new LoyalProgramAction();// Creating actions obj
 		boolean success = catAction.create(myLoyalProgram);// Executing operation
@@ -111,8 +113,10 @@ public class LoyalProgramController {
 
 		System.out.println("Type the new Discount percent:");
 		myNewLoyalProgram.setDiscount(input.nextFloat());// Setting the new name
+		input.nextLine();
 		System.out.println("Type the new MinimumPoints:");
 		myNewLoyalProgram.setMinimumPoints(input.nextInt());
+		input.nextLine();
 
 		boolean success = catAction.update(myNewLoyalProgram);
 

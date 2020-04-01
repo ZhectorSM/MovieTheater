@@ -10,7 +10,7 @@ public class AuditoriumController {
 	public void auditoriumMenu() {
 
 		System.out.println("*Auditorium Menu*");
-		System.out.println("1 = create new Auditorium");
+		System.out.println("1 = Create new Auditorium");
 		System.out.println("2 = List Auditorium");
 		System.out.println("3 = Update an auditorium");
 		System.out.println("4 = Delete an auditorium");
@@ -56,13 +56,14 @@ public class AuditoriumController {
 		System.out.println("Type total seats of the auditorium");
 
 		Auditorium myAuditorium = new Auditorium();
-		myAuditorium.setSeatTotal(input.next());
+		myAuditorium.setSeatTotal(input.nextLine().trim());
 
 		System.out.println("Type vip or not");
 		myAuditorium.setVip(input.nextBoolean());
 
 		System.out.println("Type the ID of Location");
 		myAuditorium.setIdLocation(input.nextInt());
+		input.nextLine();
 
 		AuditoriumAction audAction = new AuditoriumAction();
 		boolean success = audAction.create(myAuditorium);
@@ -84,7 +85,8 @@ public class AuditoriumController {
 		List<Auditorium> lstAuditorium = audAction.read();
 		System.out.println("*List of Auditorium*");
 		for (Auditorium aud : lstAuditorium) {
-			System.out.println(aud.getIdAuditorium() + aud.getSeatTotal() + aud.isVip() + aud.getIdLocation());
+			System.out.println(
+					aud.getIdAuditorium() + " " + aud.getSeatTotal() + " " + aud.isVip() + " " + aud.getIdLocation());
 		}
 		callAuditoriumMenu();
 	}
@@ -94,7 +96,7 @@ public class AuditoriumController {
 		System.out.println("ENTER to go to menu");
 		System.out.println();
 		Scanner input = new Scanner(System.in);
-		String readString = input.nextLine();
+		String readString = input.nextLine().trim();
 
 		while (readString != null) {
 			System.out.println(readString);
@@ -104,7 +106,7 @@ public class AuditoriumController {
 			}
 
 			if (input.hasNextLine()) {
-				readString = input.nextLine();
+				readString = input.nextLine().trim();
 			} else {
 				readString = null;
 			}
@@ -125,6 +127,7 @@ public class AuditoriumController {
 
 		System.out.println("Type a ID of the Auditorium: ");
 		int idAudSelected = input.nextInt();
+		input.nextLine();
 
 		boolean exists = false;
 		for (Auditorium aud : lstAuditorium) {
@@ -142,7 +145,7 @@ public class AuditoriumController {
 		myNewAuditorium.setIdAuditorium(idAudSelected);
 
 		System.out.println("Type the total seats of the auditorium: ");
-		myNewAuditorium.setSeatTotal(input.next());
+		myNewAuditorium.setSeatTotal(input.nextLine().trim());
 
 		System.out.println("true or false about vip: ");
 		myNewAuditorium.setVip(input.nextBoolean());
@@ -170,6 +173,7 @@ public class AuditoriumController {
 
 		System.out.println("Type the ID of auditorium you want to delete");
 		int idAudSelected = input.nextInt();
+		input.nextLine();
 
 		boolean exists = false;
 

@@ -62,15 +62,16 @@ public class CustomerController {
 		Customer myCustomer = new Customer();
 		System.out.println("*Add new Customer*");
 		System.out.println("Type the first name:");
-		myCustomer.setFirstName(input.next());
+		myCustomer.setFirstName(input.nextLine().trim());
 		System.out.println("Type the last name:");
-		myCustomer.setLastName(input.next());
+		myCustomer.setLastName(input.nextLine().trim());
 		System.out.println("Type the gender:");
-		myCustomer.setGender(input.next());
+		myCustomer.setGender(input.nextLine().trim());
 		System.out.println("Type the Email:");
-		myCustomer.setEmail(input.next());
+		myCustomer.setEmail(input.nextLine().trim());
 		System.out.println("Type the points:");
 		myCustomer.setPoints(input.nextInt());
+		input.nextLine();
 
 		CustomerAction catAction = new CustomerAction();// Creating actions obj
 		boolean success = catAction.create(myCustomer);// Executing operation
@@ -126,6 +127,7 @@ public class CustomerController {
 		myNewCustomer.setEmail(input.next());
 		System.out.println("Type the points:");
 		myNewCustomer.setPoints(input.nextInt());
+		input.nextLine();
 
 		boolean success = catAction.update(myNewCustomer);
 
