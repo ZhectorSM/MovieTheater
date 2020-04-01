@@ -10,8 +10,8 @@ public class LoyalProgramInsertionTest {
 		
 			        
 		            LoyalPrograms myLoyalPrograms = new LoyalPrograms();
-		            myLoyalPrograms.setDiscount(0);
-		            myLoyalPrograms.setMinimumPoints(0);
+		            myLoyalPrograms.setDiscount(10);
+		            myLoyalPrograms.setMinimumPoints(10);
 					// Setting values
 					System.out.println(myLoyalPrograms);// Printing info
 

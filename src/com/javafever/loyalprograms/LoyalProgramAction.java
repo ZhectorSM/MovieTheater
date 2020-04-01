@@ -70,9 +70,30 @@ public class LoyalProgramAction extends EntityActions<LoyalPrograms> {
 
 
 	@Override
-	protected boolean update(LoyalPrograms element) {
-		// TODO Auto-generated method stub
+	public boolean update(LoyalPrograms element) {
+
+		int success;
+
+		try {
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("UPDATE loyal_program SET discount = ? , minimum_points = ? WHERE id_loyal_program = ?");
+
+			ps.setFloat(1, element.getDiscount());
+			ps.setFloat(2, element.getMinimumPoints());
+			ps.setInt(3, element.getIdLoyalProgram());
+			
+			success = ps.executeUpdate();
+
+			if (success > 0) {// Operation succesful
+				return true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
 		return false;
+
 	}
 
 	@Override

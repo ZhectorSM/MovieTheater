@@ -69,11 +69,34 @@ public class CustomerAction extends EntityActions<Customer>  {
 	}
 
 	@Override
-	protected boolean update(Customer element) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public boolean update(Customer element) {
 
+		int success;
+
+		try {
+			Connection conn = DbConector.getConnection();
+			PreparedStatement ps = conn.prepareStatement("UPDATE customer SET first_name = ?,last_name =?,gender = ?,email = ?,points = ? WHERE id_customer = ?");
+
+			ps.setString(1, element.getFirstName());
+			ps.setString(2, element.getLastName());
+			ps.setString(3, element.getGender());
+			ps.setString(4, element.getEmail());
+			ps.setInt(5, element.getPoints());
+			ps.setInt(6, element.getIdCustomer());
+
+			success = ps.executeUpdate();
+
+			if (success > 0) {// Operation succesful
+				return true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
+		return false;
+
+	}
 	@Override
 	public boolean delete(Customer element) {
 		try {
