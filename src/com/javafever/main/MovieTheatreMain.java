@@ -1,5 +1,6 @@
 package com.javafever.main;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,10 +12,10 @@ import com.javafever.loyalprograms.LoyalProgramController;
 import com.javafever.movie.Movie;
 import com.javafever.movie.MovieAction;
 import com.javafever.movie.MovieController;
-import com.javafever.theatreschedule.ScheduleAction;
 import com.javafever.theatreschedule.ScheduleController;
-import com.javafever.theatreschedule.TheatreSchedule;
+import com.javafever.ticket.MovieFunction;
 import com.javafever.ticket.Ticket;
+import com.javafever.ticket.TicketAction;
 import com.javafever.user.User;
 import com.javafever.user.UserAction;
 
@@ -186,6 +187,18 @@ public class MovieTheatreMain {
 	}
 
 	public static void buyTicket() {
+		Ticket myTicket = new Ticket();
+
+		int userIdMovie = chooseMovie();
+		myTicket.setIdMovie(userIdMovie);
+		int userIdChedule = chooseSchedule(myTicket);
+		myTicket.setIdSchedule(userIdChedule);
+
+		System.out.println(myTicket);
+
+	}
+
+	public static int chooseMovie() {
 
 		System.out.println("- Movies -");
 		MovieAction movAct = new MovieAction();
@@ -199,33 +212,65 @@ public class MovieTheatreMain {
 		int userIdMovie = input.nextInt();
 		input.nextLine();
 
+		// verifing the id of the movie exist
 		boolean movieExist = false;
 		for (Movie movie : lstMovies) {
 			if (userIdMovie == movie.getIdMovie()) {
 				movieExist = true;
+				break;
 			}
 		}
-
 		// Set movie
-		Ticket myTicket = new Ticket();
-		if (movieExist) {
-			myTicket.setIdTicket(userIdMovie);
-		} else {
-			System.out.println("Movie does not exist");
+		if (!movieExist) {
 			buyTicket();
 		}
 
+		return userIdMovie;
+
+	}
+
+	public static int chooseSchedule(Ticket myTicket) {
+
+		Scanner input = new Scanner(System.in);
+
 		// Getting available schedule
-		ScheduleAction schAction = new ScheduleAction();
-		List<TheatreSchedule> lstSchedule = schAction.readByIdMovie(userIdMovie);
-		System.out.println("- Showtime -");
-		for (TheatreSchedule sch : lstSchedule) {
-			System.out.println(sch.getIdSchedule() + " " + sch.getShowtime());
+		TicketAction tkAction = new TicketAction();
+		List<MovieFunction> lstFunctions = tkAction.getMovieFuntions(myTicket.getIdMovie());
+		System.out.println("- Functions -  ");
+
+		System.out.println("            SHOWTIME            VIP     PRICE     LOC ADDRES  ");
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm a");
+		for (MovieFunction fun : lstFunctions) {
+			System.out.println(fun.getIdSchedule() + "\t" + fun.getShowtime().format(formatter) + "\t"
+					+ (fun.isVip() ? "Yes" : "No") + "\t" + fun.getPrice() + "\t" + fun.getAddress());
 		}
 
-		// Filter the movies by id (lambda expression) example
-//				lstSchedule.stream().filter(sch -> sch.getIdMovie() == userIdMovie)
-//						.forEach(sch -> System.out.println(sch.getIdSchedule() + " " + sch.getShowtime()));
+		System.out.println("Choose the Date (Type the Id):");
+		int userIdSchedule = input.nextInt();
+		input.nextLine();
+
+		// verifing the id of the schedule exist
+		boolean scheduleExist = false;
+		for (MovieFunction sch : lstFunctions) {
+			if (userIdSchedule == sch.getIdSchedule()) {
+				scheduleExist = true;
+				break;
+			}
+		}
+
+		// Set schedule
+		if (!scheduleExist) {
+			System.out.println("Function does not exist");
+			chooseSchedule(myTicket);
+		}
+
+		input.close();
+		return userIdSchedule;
+
+	}
+
+	public static void chooseLocation(Ticket ticket) {
 
 	}
 

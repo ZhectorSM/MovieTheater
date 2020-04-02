@@ -23,7 +23,7 @@ public class DbConector {
 				conn = DriverManager.getConnection(URL, USER, PWD);
 				if (conn != null) {
 
-					System.out.println("Database connected succesfully.");
+					// System.out.println("Database connected succesfully.");
 
 				}
 

@@ -6,8 +6,8 @@ public class Ticket {
 	private int idLoyalProgram;
 	private int idCustomer;
 	private int idSchedule;
+	private int idMovie;
 
-	// Getter and Setters
 	public int getIdTicket() {
 		return idTicket;
 	}
@@ -40,18 +40,24 @@ public class Ticket {
 		this.idSchedule = idSchedule;
 	}
 
-	// hashcode
+	public int getIdMovie() {
+		return idMovie;
+	}
+
+	public void setIdMovie(int idMovie) {
+		this.idMovie = idMovie;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + idCustomer;
 		result = prime * result + idLoyalProgram;
+		result = prime * result + idMovie;
 		result = prime * result + idSchedule;
 		result = prime * result + idTicket;
 		return result;
-
-		// equals
 	}
 
 	@Override
@@ -67,19 +73,19 @@ public class Ticket {
 			return false;
 		if (idLoyalProgram != other.idLoyalProgram)
 			return false;
+		if (idMovie != other.idMovie)
+			return false;
 		if (idSchedule != other.idSchedule)
 			return false;
 		if (idTicket != other.idTicket)
 			return false;
 		return true;
-
-		// String
 	}
 
 	@Override
 	public String toString() {
 		return "Ticket [idTicket=" + idTicket + ", idLoyalProgram=" + idLoyalProgram + ", idCustomer=" + idCustomer
-				+ ", idSchedule=" + idSchedule + "]";
+				+ ", idSchedule=" + idSchedule + ", idMovie=" + idMovie + "]";
 	}
 
 }
