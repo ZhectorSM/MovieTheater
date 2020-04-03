@@ -21,13 +21,12 @@ public class ScheduleAction extends EntityActions<TheatreSchedule> {
 
 			Connection conn = DbConector.getConnection();// Get the connection from the db conector
 			PreparedStatement ps = conn.prepareStatement(
-					"INSERT into theatre_schedule(showtime,id_auditorium,id_movie,price,seat) values (?,?,?,?,?)");// Prepare
+					"INSERT into theatre_schedule(showtime,id_auditorium,id_movie,price,seat) values (?,?,?,?)");// Prepare
 
 			ps.setObject(1, element.getShowtime());
 			ps.setInt(2, element.getIdAuditorium());
 			ps.setInt(3, element.getIdMovie());
 			ps.setFloat(4, element.getPrice());
-			ps.setInt(5, element.getSeat());
 			success = ps.executeUpdate();
 
 			if (success > 0) {// If the operation was succesful we return true
@@ -61,7 +60,6 @@ public class ScheduleAction extends EntityActions<TheatreSchedule> {
 				schedule.setIdAuditorium(result.getInt(3));
 				schedule.setIdMovie(result.getInt(4));
 				schedule.setPrice(result.getFloat(5));
-				schedule.setSeat(result.getInt(6));
 
 				lstSchedule.add(schedule);// Add element to the list
 			}
@@ -80,13 +78,12 @@ public class ScheduleAction extends EntityActions<TheatreSchedule> {
 		try {
 			Connection conn = DbConector.getConnection();
 			PreparedStatement ps = conn.prepareStatement(
-					"UPDATE theatre_schedule SET showtime = ? , id_auditorium = ?, id_movie = ?, price = ?, seat = ? WHERE id_schedule = ?");
+					"UPDATE theatre_schedule SET showtime = ? , id_auditorium = ?, id_movie = ?, price = ? WHERE id_schedule = ?");
 
 			ps.setObject(1, element.getShowtime());
 			ps.setInt(2, element.getIdAuditorium());
 			ps.setInt(3, element.getIdMovie());
 			ps.setFloat(4, element.getPrice());
-			ps.setInt(5, element.getSeat());
 
 			ps.setInt(6, element.getIdSchedule());
 
@@ -145,7 +142,6 @@ public class ScheduleAction extends EntityActions<TheatreSchedule> {
 				schedule.setIdAuditorium(result.getInt(3));
 				schedule.setIdMovie(result.getInt(4));
 				schedule.setPrice(result.getFloat(5));
-				schedule.setSeat(result.getInt(6));
 
 				lstSchedule.add(schedule);// Add element to the list
 			}

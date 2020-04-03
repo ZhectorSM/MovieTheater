@@ -11,7 +11,7 @@ public class AuditoriumUpdateTest {
 
 		Auditorium myNewAuditorium = new Auditorium();
 		myNewAuditorium.setIdAuditorium(4);
-		myNewAuditorium.setSeatTotal("40");
+		myNewAuditorium.setSeatTotal(40);
 		myNewAuditorium.setVip(true);
 
 		boolean success = audAction.update(myNewAuditorium);

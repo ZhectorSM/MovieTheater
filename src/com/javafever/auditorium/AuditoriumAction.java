@@ -22,7 +22,7 @@ public class AuditoriumAction extends EntityActions<Auditorium> {
 			PreparedStatement ps = conn
 					.prepareStatement("INSERT into auditorium(seat_total, vip, id_location) values (?,?,?)");// Prepare
 			// the query
-			ps.setString(1, element.getSeatTotal());// Set the values of the query (data to be inserted)
+			ps.setInt(1, element.getSeatTotal());// Set the values of the query (data to be inserted)
 			ps.setBoolean(2, element.isVip());
 			ps.setInt(3, element.getIdLocation());
 			success = ps.executeUpdate();// Execute the query in the db
@@ -52,7 +52,7 @@ public class AuditoriumAction extends EntityActions<Auditorium> {
 			while (result.next()) {
 				Auditorium auditorium = new Auditorium();
 				auditorium.setIdAuditorium(result.getInt(1));
-				auditorium.setSeatTotal(result.getString(2));
+				auditorium.setSeatTotal(result.getInt(2));
 				auditorium.setVip(result.getBoolean(3));
 				auditorium.setIdLocation(result.getInt(4));
 
@@ -73,7 +73,7 @@ public class AuditoriumAction extends EntityActions<Auditorium> {
 			Connection conn = DbConector.getConnection();
 			PreparedStatement ps = conn
 					.prepareStatement("UPDATE auditorium SET seat_total = ?, vip = ? WHERE id_auditorium = ?");
-			ps.setString(1, element.getSeatTotal());
+			ps.setInt(1, element.getSeatTotal());
 			ps.setBoolean(2, element.isVip());
 			ps.setInt(3, element.getIdAuditorium());
 

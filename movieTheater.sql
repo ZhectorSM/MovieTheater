@@ -58,18 +58,16 @@ create table theatre_schedule (
 	id_auditorium int not null,
 	id_movie int not null,
 	price float not null,
-	seat int not null,
 	FOREIGN KEY (id_movie) REFERENCES movie(id_movie),
 	FOREIGN KEY (id_auditorium) REFERENCES auditorium(id_auditorium)
 );
 
 create table ticket (
 	id_ticket int primary key auto_increment not null,
-	id_loyal_program float not null,
-	id_customer int not null,
+	id_loyal_program float not null default 0,
+	id_customer int,
 	id_schedule int not null,
 	FOREIGN KEY (id_schedule) REFERENCES theatre_schedule(id_schedule),
-	FOREIGN KEY (id_customer) REFERENCES customer(id_customer)
 );
 
 

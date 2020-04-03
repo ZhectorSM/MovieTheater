@@ -9,7 +9,6 @@ public class TheatreSchedule {
 	private int idAuditorium;
 	private int idMovie;
 	private float price;
-	private int seat;
 
 	public int getIdSchedule() {
 		return idSchedule;
@@ -51,14 +50,6 @@ public class TheatreSchedule {
 		this.price = price;
 	}
 
-	public int getSeat() {
-		return seat;
-	}
-
-	public void setSeat(int seat) {
-		this.seat = seat;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -67,7 +58,6 @@ public class TheatreSchedule {
 		result = prime * result + idMovie;
 		result = prime * result + idSchedule;
 		result = prime * result + Float.floatToIntBits(price);
-		result = prime * result + seat;
 		result = prime * result + ((showtime == null) ? 0 : showtime.hashCode());
 		return result;
 	}
@@ -89,8 +79,6 @@ public class TheatreSchedule {
 			return false;
 		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price))
 			return false;
-		if (seat != other.seat)
-			return false;
 		if (showtime == null) {
 			if (other.showtime != null)
 				return false;
@@ -102,7 +90,7 @@ public class TheatreSchedule {
 	@Override
 	public String toString() {
 		return "TheatreSchedul1 [idSchedule=" + idSchedule + ", showtime=" + showtime + ", idAuditorium=" + idAuditorium
-				+ ", idMovie=" + idMovie + ", price=" + price + ", seat=" + seat + "]";
+				+ ", idMovie=" + idMovie + ", price=" + price + "]";
 	}
 
 	// ESTO FUE AGREGADO POR SCHEDULE ACTION

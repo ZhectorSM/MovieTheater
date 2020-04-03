@@ -54,7 +54,7 @@ public class ScheduleController {
 		System.out.println("*List of Schedule*");
 		for (TheatreSchedule sch : lstSchedule) {
 			System.out.println(sch.getIdSchedule() + " " + sch.getShowtime() + " " + sch.getIdAuditorium() + " "
-					+ sch.getIdMovie() + " " + sch.getPrice() + " " + sch.getSeat());
+					+ sch.getIdMovie() + " " + sch.getPrice());
 		}
 
 		callScheduleMenu();
@@ -81,9 +81,6 @@ public class ScheduleController {
 		input.nextLine();
 		System.out.println("Type the new Price:");
 		mySchedule.setPrice(input.nextFloat());
-		input.nextLine();
-		System.out.println("Type the new Movie Year:");
-		mySchedule.setSeat(input.nextInt());
 		input.nextLine();
 
 		ScheduleAction schAction = new ScheduleAction();// Creating actions obj
@@ -144,9 +141,7 @@ public class ScheduleController {
 		System.out.println("Type the new Price:");
 		myNewSchedule.setPrice(input.nextFloat());
 		input.nextLine();
-		System.out.println("Type the new Movie Year:");
-		myNewSchedule.setSeat(input.nextInt());
-		input.nextLine();
+
 		boolean success = schAction.update(myNewSchedule);
 
 		if (success) {

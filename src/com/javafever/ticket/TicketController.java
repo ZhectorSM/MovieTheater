@@ -15,4 +15,17 @@ public class TicketController {
 
 	}
 
+	public void addTicket(Ticket myTicket) {
+
+		TicketAction tkAction = new TicketAction();// Creating actions obj
+		boolean success = tkAction.create(myTicket);// Executing operation
+
+		if (success) {// If the operation was succesful
+			System.out.println("Ticket inserted.");
+		} else {
+			System.out.println("Ticket insertion failed.");
+		}
+
+	}
+
 }

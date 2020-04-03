@@ -17,7 +17,6 @@ public class ScheduleUpdateTest {
 		myNewSchedule.setIdAuditorium(1);
 		myNewSchedule.setIdMovie(3);
 		myNewSchedule.setPrice(10.50f);
-		myNewSchedule.setSeat(15);
 
 		boolean success = schAction.update(myNewSchedule);
 		if (success) {

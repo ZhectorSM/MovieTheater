@@ -4,6 +4,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
+import com.javafever.auditorium.Auditorium;
+import com.javafever.auditorium.AuditoriumAction;
 import com.javafever.auditorium.AuditoriumController;
 import com.javafever.category.CategoryController;
 import com.javafever.customer.CustomerController;
@@ -21,6 +23,8 @@ import com.javafever.user.UserAction;
 
 public class MovieTheatreMain {
 
+	private static final int CUSTOMER_DEFAULT = 7;
+
 	public static void main(String[] args) {
 
 		showHeader();
@@ -29,8 +33,8 @@ public class MovieTheatreMain {
 	}
 
 	public static void showMainMenu() {
-		System.out.println("1 Buy a Ticket as a Guest");
-		System.out.println("2 Log In");
+		System.out.println("1 Buy a Ticket");
+		System.out.println("2 Log In as Admin");
 		System.out.println("0 Exit");
 
 		System.out.println("Choose an option...");
@@ -187,14 +191,34 @@ public class MovieTheatreMain {
 	}
 
 	public static void buyTicket() {
+
 		Ticket myTicket = new Ticket();
+		myTicket.setIdCustomer(CUSTOMER_DEFAULT);
+		myTicket.setIdMovie(chooseMovie());
+		myTicket.setIdSchedule(chooseSchedule(myTicket));
+		myTicket.setSeat(chooseSeat(myTicket));
 
-		int userIdMovie = chooseMovie();
-		myTicket.setIdMovie(userIdMovie);
-		int userIdChedule = chooseSchedule(myTicket);
-		myTicket.setIdSchedule(userIdChedule);
+		TicketAction tkAction = new TicketAction();
+		boolean success = tkAction.create(myTicket);
 
-		System.out.println(myTicket);
+		if (success) {
+
+			showTicket(myTicket);
+			System.out.println("Do you want to buy another Ticket ?  1 = Yes 2 = No");
+			Scanner input = new Scanner(System.in);
+			int userAnswer = input.nextInt();
+			input.nextLine();
+
+			if (userAnswer == 1) {
+				buyTicket();
+			} else {
+				System.out.println("Thank you for your preference.");
+				System.exit(0);
+			}
+
+		} else {
+			System.out.println("Ticket insertion failed");
+		}
 
 	}
 
@@ -222,7 +246,7 @@ public class MovieTheatreMain {
 		}
 		// Set movie
 		if (!movieExist) {
-			buyTicket();
+			userIdMovie = chooseMovie();
 		}
 
 		return userIdMovie;
@@ -238,7 +262,7 @@ public class MovieTheatreMain {
 		List<MovieFunction> lstFunctions = tkAction.getMovieFuntions(myTicket.getIdMovie());
 		System.out.println("- Functions -  ");
 
-		System.out.println("            SHOWTIME            VIP     PRICE     LOC ADDRES  ");
+		System.out.println("        SHOWTIME                VIP     PRICE   LOC ADDRES  ");
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm a");
 		for (MovieFunction fun : lstFunctions) {
@@ -262,15 +286,70 @@ public class MovieTheatreMain {
 		// Set schedule
 		if (!scheduleExist) {
 			System.out.println("Function does not exist");
-			chooseSchedule(myTicket);
+			userIdSchedule = chooseSchedule(myTicket);
 		}
 
-		input.close();
 		return userIdSchedule;
 
 	}
 
-	public static void chooseLocation(Ticket ticket) {
+	public static int chooseSeat(Ticket myTicket) {
+
+		Scanner input = new Scanner(System.in);
+
+		int idAuditorium = 0;
+		TicketAction tkAction = new TicketAction();
+		List<MovieFunction> lstFunctions = tkAction.getMovieFuntions(myTicket.getIdMovie());
+		for (MovieFunction fun : lstFunctions) {
+			if (myTicket.getIdSchedule() == fun.getIdSchedule()) {
+				idAuditorium = fun.getIdAuditorium();
+			}
+		}
+
+		AuditoriumAction audActAction = new AuditoriumAction();
+		List<Auditorium> lstAuditoriums = audActAction.read();
+		int totalSeats = 0;
+		for (Auditorium aud : lstAuditoriums) {
+			if (idAuditorium == aud.getIdAuditorium()) {
+				totalSeats = aud.getSeatTotal();
+			}
+		}
+
+		// Asking for a valid seat
+		int seatNum = 0;
+		while (seatNum <= 0 || seatNum > totalSeats) {
+
+			System.out.println("Choose a seat...");
+			seatNum = input.nextInt();
+			input.nextLine();
+
+		}
+
+		// Get tickest already sold
+		List<Ticket> lstTicketsSold = tkAction.readBySchedule(myTicket.getIdSchedule());
+
+		boolean seatAvailable = true;
+		for (Ticket tk : lstTicketsSold) {
+			if (seatNum == tk.getSeat()) {
+				seatAvailable = false;
+			}
+		}
+
+		if (!seatAvailable) {
+			System.out.println("Seat no available");
+			seatNum = chooseSeat(myTicket);
+		}
+
+		return seatNum;
+
+	}
+
+	public static void showTicket(Ticket myTicket) {
+		System.out.println("..........Ticket...............");
+		System.out.println("Movie:" + myTicket.getIdMovie());
+		System.out.println("Seat" + myTicket.getSeat());
+
+		System.out.println(".................................");
 
 	}
 

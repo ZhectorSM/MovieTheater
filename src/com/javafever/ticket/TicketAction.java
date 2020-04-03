@@ -14,8 +14,33 @@ public class TicketAction extends EntityActions<Ticket> {
 
 	@Override
 	public boolean create(Ticket element) {
-		// TODO Auto-generated method stub
+
+		int success;
+
+		try {
+
+			Connection conn = DbConector.getConnection();// Get the connection from the db conector
+			PreparedStatement ps = conn.prepareStatement(
+					"insert into ticket (id_loyal_program,id_customer,id_schedule,seat) values (?,?,?,?)");// Prepare
+			// the query
+			ps.setInt(1, element.getIdLoyalProgram());// Set the values of the query (data to be inserted)
+			ps.setInt(2, element.getIdCustomer());
+			ps.setInt(3, element.getIdSchedule());
+			ps.setInt(4, element.getSeat());
+
+			success = ps.executeUpdate();// Execute the query in the db update, insert,delete
+
+			if (success > 0) {// If the operation was succesful we return true
+				return true;
+			}
+
+		} catch (Exception e) {// If there is an error in the operation
+			System.out.println("Error: " + e.getMessage());
+		}
+
+		// If the operation went wrong return false
 		return false;
+
 	}
 
 	@Override
@@ -36,6 +61,39 @@ public class TicketAction extends EntityActions<Ticket> {
 				ticket.setIdLoyalProgram(result.getInt(2));
 				ticket.setIdCustomer(result.getInt(3));
 				ticket.setIdSchedule(result.getInt(4));
+				ticket.setSeat(result.getInt(5));
+
+				lstTicket.add(ticket);// Add element to the list
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+
+		return lstTicket;
+
+	}
+
+	public List<Ticket> readBySchedule(int idSchedule) {
+
+		List<Ticket> lstTicket = new ArrayList<>();
+
+		try {
+
+			Connection conn = DbConector.getConnection();// Get the connection from the db conector
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ticket where id_schedule = ?");// Prepare
+			ps.setInt(1, idSchedule);
+
+			ResultSet result = ps.executeQuery();// Execute query for select
+
+			while (result.next()) {
+
+				Ticket ticket = new Ticket();// Creating a list
+				ticket.setIdTicket(result.getInt(1));// Get the int value of the column 1
+				ticket.setIdLoyalProgram(result.getInt(2));
+				ticket.setIdCustomer(result.getInt(3));
+				ticket.setIdSchedule(result.getInt(4));
+				ticket.setSeat(result.getInt(5));
 
 				lstTicket.add(ticket);// Add element to the list
 			}

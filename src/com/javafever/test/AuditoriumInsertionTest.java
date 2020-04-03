@@ -8,7 +8,7 @@ public class AuditoriumInsertionTest {
 	public static void main(String[] args) {
 
 		Auditorium myAuditorium = new Auditorium();
-		myAuditorium.setSeatTotal("50");
+		myAuditorium.setSeatTotal(50);
 		myAuditorium.setVip(true);
 		myAuditorium.setIdLocation(5);
 		System.out.println(myAuditorium);
