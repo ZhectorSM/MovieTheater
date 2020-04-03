@@ -164,6 +164,8 @@ public class TicketController {
 		for (Auditorium aud : lstAuditoriums) {
 			if (idAuditorium == aud.getIdAuditorium()) {
 				totalSeats = aud.getSeatTotal();
+				myTicket.setAuditorium(aud);
+				break;
 			}
 		}
 
@@ -198,14 +200,15 @@ public class TicketController {
 
 	public void showTicket(Ticket myTicket) {
 
-		System.out.println("..........Ticket...............");
-		System.out.println("Movie:" + myTicket.getMovie().getMovieName());
-		System.out.println("Duration: " + myTicket.getMovie().getRuntimeMinutes() + " minutes");
-		System.out.println("Time: " + myTicket.getMovieFunction().getShowtime());
-		System.out.println("Price: " + myTicket.getMovieFunction().getPrice());
-		System.out.println("Seat" + myTicket.getSeat());
-
-		System.out.println(".................................");
+		System.out.println("ーーーーーーーーーーTicketーーーーーーーーーーー");
+		System.out.println(" ** Guest Copy **");
+		System.out.println("");
+		System.out.println(" Movie: " + myTicket.getMovie().getMovieName());
+		System.out.println(" Auditorium: " + myTicket.getAuditorium().getIdAuditorium());
+		System.out.println(" Time: " + myTicket.getMovieFunction().getShowtime());
+		System.out.println(" Price: " + myTicket.getMovieFunction().getPrice() + " + tax");
+		System.out.println("                   　　　　　   " + "Seat: " + myTicket.getSeat());
+		System.out.println("ーーーーーーーーーーーーーーーーーーーーーーーーー");
 
 	}
 
