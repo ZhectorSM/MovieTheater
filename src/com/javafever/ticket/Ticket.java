@@ -1,13 +1,20 @@
 package com.javafever.ticket;
 
+import com.javafever.auditorium.Auditorium;
+import com.javafever.customer.Customer;
+import com.javafever.movie.Movie;
+
 public class Ticket {
 
 	private int idTicket;
 	private int idLoyalProgram;
 	private int idCustomer;
 	private int idSchedule;
-	private int idMovie;
 	private int seat;
+	private Customer customer;
+	private Movie movie;
+	private Auditorium auditorium;
+	private MovieFunction movieFunction;
 
 	public int getIdTicket() {
 		return idTicket;
@@ -41,14 +48,6 @@ public class Ticket {
 		this.idSchedule = idSchedule;
 	}
 
-	public int getIdMovie() {
-		return idMovie;
-	}
-
-	public void setIdMovie(int idMovie) {
-		this.idMovie = idMovie;
-	}
-
 	public int getSeat() {
 		return seat;
 	}
@@ -57,47 +56,43 @@ public class Ticket {
 		this.seat = seat;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + idCustomer;
-		result = prime * result + idLoyalProgram;
-		result = prime * result + idMovie;
-		result = prime * result + idSchedule;
-		result = prime * result + idTicket;
-		result = prime * result + seat;
-		return result;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Ticket other = (Ticket) obj;
-		if (idCustomer != other.idCustomer)
-			return false;
-		if (idLoyalProgram != other.idLoyalProgram)
-			return false;
-		if (idMovie != other.idMovie)
-			return false;
-		if (idSchedule != other.idSchedule)
-			return false;
-		if (idTicket != other.idTicket)
-			return false;
-		if (seat != other.seat)
-			return false;
-		return true;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Movie getMovie() {
+		return movie;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
+
+	public Auditorium getAuditorium() {
+		return auditorium;
+	}
+
+	public void setAuditorium(Auditorium auditorium) {
+		this.auditorium = auditorium;
+	}
+
+	public MovieFunction getMovieFunction() {
+		return movieFunction;
+	}
+
+	public void setMovieFunction(MovieFunction movieFunction) {
+		this.movieFunction = movieFunction;
 	}
 
 	@Override
 	public String toString() {
 		return "Ticket [idTicket=" + idTicket + ", idLoyalProgram=" + idLoyalProgram + ", idCustomer=" + idCustomer
-				+ ", idSchedule=" + idSchedule + ", idMovie=" + idMovie + ", seat=" + seat + "]";
+				+ ", idSchedule=" + idSchedule + ", seat=" + seat + ", customer=" + customer + ", movie=" + movie
+				+ ", auditorium=" + auditorium + ", movieFunction=" + movieFunction + "]";
 	}
 
 }

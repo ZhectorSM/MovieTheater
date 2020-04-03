@@ -67,7 +67,8 @@ create table ticket (
 	id_loyal_program float not null default 0,
 	id_customer int,
 	id_schedule int not null,
-	FOREIGN KEY (id_schedule) REFERENCES theatre_schedule(id_schedule),
+	seat int not null,
+	FOREIGN KEY (id_schedule) REFERENCES theatre_schedule(id_schedule)
 );
 
 

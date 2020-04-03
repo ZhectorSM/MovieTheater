@@ -25,7 +25,7 @@ public class TicketAction extends EntityActions<Ticket> {
 			// the query
 			ps.setInt(1, element.getIdLoyalProgram());// Set the values of the query (data to be inserted)
 			ps.setInt(2, element.getIdCustomer());
-			ps.setInt(3, element.getIdSchedule());
+			ps.setInt(3, element.getMovieFunction().getIdSchedule());
 			ps.setInt(4, element.getSeat());
 
 			success = ps.executeUpdate();// Execute the query in the db update, insert,delete
