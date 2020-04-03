@@ -167,6 +167,34 @@ public class TicketController {
 			}
 		}
 
+		// Get tickest already sold
+		List<Ticket> lstTicketsSold = tkAction.readBySchedule(myTicket.getMovieFunction().getIdSchedule());
+
+		// Matrix of seats
+		System.out.println("||||||| SCREEN |||||||");
+		for (int seat = 1; seat <= totalSeats; seat++) {
+
+			// If the seat is busy print x
+			boolean seatAvailable = true;
+			for (Ticket soldTk : lstTicketsSold) {
+				if (seat == soldTk.getSeat()) {
+					seatAvailable = false;
+					break;
+				}
+			}
+
+			if (seatAvailable) {
+				System.out.printf("%-5s", seat);// Padding right 5 char
+			} else {
+				System.out.printf("%-5s", "X");
+			}
+
+			// Rows
+			if (seat % 5 == 0) {
+				System.out.println();
+			}
+		}
+
 		// Asking for a valid seat
 		int seatNum = 0;
 		while (seatNum <= 0 || seatNum > totalSeats) {
@@ -177,9 +205,7 @@ public class TicketController {
 
 		}
 
-		// Get tickest already sold
-		List<Ticket> lstTicketsSold = tkAction.readBySchedule(myTicket.getMovieFunction().getIdSchedule());
-
+		// verifiying the availavility of the seat
 		boolean seatAvailable = true;
 		for (Ticket tk : lstTicketsSold) {
 			if (seatNum == tk.getSeat()) {
