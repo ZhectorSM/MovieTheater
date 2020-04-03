@@ -41,7 +41,6 @@ public class MovieController {
 			break;
 		}
 
-		input.close();
 	}
 
 	public void listMovie() {
@@ -67,16 +66,13 @@ public class MovieController {
 		Movie myMovie = new Movie();
 		System.out.println("Type the Movie name:");
 		myMovie.setMovieName(input.nextLine().trim());
-		input.nextLine();
 		System.out.println("Type the Id Category:");
 		myMovie.setIdCategory(input.nextInt());
 		input.nextLine();
 		System.out.println("Type the Director:");
 		myMovie.setDirector(input.nextLine().trim());
-		input.nextLine();
 		System.out.println("Type the Actor:");
 		myMovie.setActor(input.nextLine().trim());
-		input.nextLine();
 		System.out.println("Type the Movie Year:");
 		myMovie.setMovieYear(input.nextInt());
 		input.nextLine();
@@ -85,7 +81,6 @@ public class MovieController {
 		input.nextLine();
 		System.out.println("Type the Rate:");
 		myMovie.setRate(input.nextLine().trim());
-		input.nextLine();
 
 		MovieAction movAction = new MovieAction();// Creating actions obj
 		boolean success = movAction.create(myMovie);// Executing operation
@@ -97,7 +92,7 @@ public class MovieController {
 		}
 
 		callMovieMenu();
-		input.close();
+
 	}
 
 	public void updateMovie() {
@@ -124,24 +119,21 @@ public class MovieController {
 
 		if (!exists) {// Id the movies does not exist
 			System.out.println("Movie does not exist.");
-			input.close();
-			return; // finish the method execution
+
+			movieMenu();
 		}
 
 		myNewMovie.setIdMovie(idMovSelected);
 		// Setting the new info
 		System.out.println("Type the new Name:");
 		myNewMovie.setMovieName(input.nextLine().trim());
-		input.nextLine();
 		System.out.println("Type the new Id Category:");
 		myNewMovie.setIdCategory(input.nextInt());
 		input.nextLine();
 		System.out.println("Type the new Director:");
 		myNewMovie.setDirector(input.nextLine().trim());
-		input.nextLine();
 		System.out.println("Type the new Actor:");
 		myNewMovie.setActor(input.nextLine().trim());
-		input.nextLine();
 		System.out.println("Type the new Movie Year:");
 		myNewMovie.setMovieYear(input.nextInt());
 		input.nextLine();
@@ -150,7 +142,6 @@ public class MovieController {
 		input.nextLine();
 		System.out.println("Type the new Rate:");
 		myNewMovie.setRate(input.nextLine().trim());
-		input.nextLine();
 
 		boolean success = movAction.update(myNewMovie);
 
@@ -161,7 +152,6 @@ public class MovieController {
 		}
 
 		callMovieMenu();
-		input.close();
 
 	}
 
@@ -191,8 +181,8 @@ public class MovieController {
 
 		if (!exists) {// Id the movies does not exist
 			System.out.println("Movie does not exist.");
-			input.close();
-			return; // finish the method execution
+
+			movieMenu();
 		}
 
 		boolean success = movAction.delete(myMovie);// delete movies
@@ -204,7 +194,7 @@ public class MovieController {
 		}
 
 		callMovieMenu();
-		input.close();
+
 	}
 
 	private void callMovieMenu() {
@@ -213,7 +203,6 @@ public class MovieController {
 		System.out.println();
 		Scanner input = new Scanner(System.in);
 		String readString = input.nextLine().trim();
-		input.nextLine();
 
 		while (readString != null) {
 			System.out.println(readString);
@@ -228,6 +217,6 @@ public class MovieController {
 				readString = null;
 			}
 		}
-		input.close();
+
 	}
 }

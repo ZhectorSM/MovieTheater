@@ -43,8 +43,6 @@ public class ScheduleController {
 			break;
 		}
 
-		input.close();
-
 	}
 
 	public void listSchedule() {
@@ -70,7 +68,6 @@ public class ScheduleController {
 		System.out.println("Type the showtime: yyyy-MM-dd'T'HH:mm:ss");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 		String userdate = input.nextLine().trim();
-		input.nextLine();
 		LocalDateTime ldt = LocalDateTime.parse(userdate, formatter);
 		mySchedule.setShowtime(ldt);
 		System.out.println("Type the Id Auditorium:");
@@ -93,7 +90,7 @@ public class ScheduleController {
 		}
 
 		callScheduleMenu();
-		input.close();
+
 	}
 
 	public void updateSchedule() {
@@ -120,8 +117,8 @@ public class ScheduleController {
 
 		if (!exists) {// Id the schedules does not exist
 			System.out.println("Schedule does not exist.");
-			input.close();
-			return; // finish the method execution
+
+			scheduleMenu();
 		}
 
 		myNewSchedule.setIdSchedule(idSchSelected);
@@ -129,10 +126,9 @@ public class ScheduleController {
 		System.out.println("Type the showtime: yyyy-MM-dd'T'HH:mm:ss");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 		String userdate1 = input.nextLine().trim();
-		input.nextLine();
 		LocalDateTime ldt1 = LocalDateTime.parse(userdate1, formatter);
 		myNewSchedule.setShowtime(ldt1);
-		System.out.println("Type the new Id Category:");
+		System.out.println("Type the new Id Auditorium:");
 		myNewSchedule.setIdAuditorium(input.nextInt());
 		input.nextLine();
 		System.out.println("Type the new Id Movie:");
@@ -151,7 +147,6 @@ public class ScheduleController {
 		}
 
 		callScheduleMenu();
-		input.close();
 
 	}
 
@@ -181,8 +176,8 @@ public class ScheduleController {
 
 		if (!exists) {// Id the schedules does not exist
 			System.out.println("Schedule does not exist.");
-			input.close();
-			return; // finish the method execution
+
+			scheduleMenu();
 		}
 
 		boolean success = schAction.delete(mySchedule);// delete schedules
@@ -194,7 +189,7 @@ public class ScheduleController {
 		}
 
 		callScheduleMenu();
-		input.close();
+
 	}
 
 	private void callScheduleMenu() {
@@ -203,7 +198,7 @@ public class ScheduleController {
 		System.out.println();
 		Scanner input = new Scanner(System.in);
 		String readString = input.nextLine().trim();
-		input.nextLine();
+
 		while (readString != null) {
 			System.out.println(readString);
 
@@ -217,6 +212,6 @@ public class ScheduleController {
 				readString = null;
 			}
 		}
-		input.close();
+
 	}
 }

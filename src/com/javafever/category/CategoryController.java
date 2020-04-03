@@ -41,7 +41,6 @@ public class CategoryController {
 			break;
 		}
 
-		input.close();
 	}
 
 	public void listCategories() {
@@ -75,7 +74,7 @@ public class CategoryController {
 		}
 
 		callCategoryMenu();
-		input.close();
+
 	}
 
 	public void updateCategory() {
@@ -102,8 +101,8 @@ public class CategoryController {
 
 		if (!exists) {// Id the category does not exist
 			System.out.println("Category does not exist.");
-			input.close();
-			return; // finish the method execution
+
+			categoryMenu();
 		}
 
 		myNewCategory.setIdCategory(idCatSelected);
@@ -120,7 +119,7 @@ public class CategoryController {
 		}
 
 		callCategoryMenu();
-		input.close();
+
 	}
 
 	public void deleteCategory() {
@@ -148,8 +147,8 @@ public class CategoryController {
 
 		if (!exists) {// Id the category does not exist
 			System.out.println("Category does not exist.");
-			input.close();
-			return; // finish the method execution
+
+			categoryMenu();
 		}
 
 		boolean success = catAction.delete(myCategory);// delete category
@@ -161,7 +160,7 @@ public class CategoryController {
 		}
 
 		callCategoryMenu();
-		input.close();
+
 	}
 
 	private void callCategoryMenu() {
@@ -184,7 +183,6 @@ public class CategoryController {
 				readString = null;
 			}
 		}
-		input.close();
 
 	}
 

@@ -50,7 +50,6 @@ public class MovieTheatreMain {
 			break;
 		}
 
-		input.close();
 	}
 
 	public static void login() {
@@ -88,7 +87,6 @@ public class MovieTheatreMain {
 			System.out.println("Verify your data.");
 		}
 
-		input.close();
 	}
 
 	public static void showAdminMenu() {
@@ -146,8 +144,6 @@ public class MovieTheatreMain {
 			break;
 		}
 
-		input.close();
-
 	}
 
 	@Deprecated
@@ -179,8 +175,6 @@ public class MovieTheatreMain {
 			showUserMenu();
 			break;
 		}
-
-		input.close();
 
 	}
 

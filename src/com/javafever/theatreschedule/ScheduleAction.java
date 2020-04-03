@@ -21,7 +21,7 @@ public class ScheduleAction extends EntityActions<TheatreSchedule> {
 
 			Connection conn = DbConector.getConnection();// Get the connection from the db conector
 			PreparedStatement ps = conn.prepareStatement(
-					"INSERT into theatre_schedule(showtime,id_auditorium,id_movie,price,seat) values (?,?,?,?)");// Prepare
+					"INSERT into theatre_schedule(showtime,id_auditorium,id_movie,price) values (?,?,?,?)");// Prepare
 
 			ps.setObject(1, element.getShowtime());
 			ps.setInt(2, element.getIdAuditorium());
@@ -85,7 +85,7 @@ public class ScheduleAction extends EntityActions<TheatreSchedule> {
 			ps.setInt(3, element.getIdMovie());
 			ps.setFloat(4, element.getPrice());
 
-			ps.setInt(6, element.getIdSchedule());
+			ps.setInt(5, element.getIdSchedule());
 
 			success = ps.executeUpdate();
 

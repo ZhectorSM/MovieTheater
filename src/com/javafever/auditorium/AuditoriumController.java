@@ -76,7 +76,6 @@ public class AuditoriumController {
 		}
 
 		callAuditoriumMenu();
-		input.close();
 
 	}
 
@@ -112,7 +111,6 @@ public class AuditoriumController {
 				readString = null;
 			}
 		}
-		input.close();
 
 	}
 
@@ -139,8 +137,8 @@ public class AuditoriumController {
 
 		if (!exists) {
 			System.out.println("Auditorium does not exist");
-			input.close();
-			return;
+
+			auditoriumMenu();
 		}
 
 		myNewAuditorium.setIdAuditorium(idAudSelected);
@@ -159,7 +157,6 @@ public class AuditoriumController {
 		}
 
 		callAuditoriumMenu();
-		input.close();
 
 	}
 
@@ -186,8 +183,8 @@ public class AuditoriumController {
 		}
 		if (!exists) {
 			System.out.println("auditorium does not exist");
-			input.close();
-			return;
+
+			auditoriumMenu();
 		}
 		boolean success = audAction.delete(myAuditorium);
 
@@ -198,7 +195,6 @@ public class AuditoriumController {
 		}
 
 		callAuditoriumMenu();
-		input.close();
 
 	}
 }
