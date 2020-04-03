@@ -41,7 +41,6 @@ public class CustomerController {
 			break;
 		}
 
-		input.close();
 	}
 
 	public void listCustomers() {
@@ -83,7 +82,7 @@ public class CustomerController {
 		}
 
 		callCustomerMenu();
-		input.close();
+
 	}
 
 	public void updateCustomer() {
@@ -110,8 +109,8 @@ public class CustomerController {
 
 		if (!exists) {// Id the category does not exist
 			System.out.println("Customer does not exist.");
-			input.close();
-			return; // finish the method execution
+
+			customerMenu();
 		}
 
 		myNewCustomer.setIdCustomer(idCatSelected);
@@ -138,7 +137,7 @@ public class CustomerController {
 		}
 
 		callCustomerMenu();
-		input.close();
+
 	}
 
 	public void deleteCustomer() {
@@ -166,8 +165,8 @@ public class CustomerController {
 
 		if (!exists) {// Id the category does not exist
 			System.out.println("Customer does not exist.");
-			input.close();
-			return; // finish the method execution
+
+			customerMenu();
 		}
 
 		boolean success = catAction.delete(myCustomer);// delete category
@@ -179,7 +178,7 @@ public class CustomerController {
 		}
 
 		callCustomerMenu();
-		input.close();
+
 	}
 
 	private void callCustomerMenu() {
@@ -202,7 +201,6 @@ public class CustomerController {
 				readString = null;
 			}
 		}
-		input.close();
 
 	}
 

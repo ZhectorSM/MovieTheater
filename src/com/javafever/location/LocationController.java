@@ -45,7 +45,7 @@ public class LocationController {
 			callLocationMenu();
 			break;
 		}
-		input.close();
+
 	}
 
 	public void addLocation() {
@@ -69,7 +69,6 @@ public class LocationController {
 		}
 
 		callLocationMenu();
-		input.close();
 
 	}
 
@@ -107,8 +106,8 @@ public class LocationController {
 
 		if (!exists) {
 			System.out.println("Location does not exist");
-			input.close();
-			return;
+
+			locationMenu();
 		}
 
 		myNewLocation.setIdLocation(idLocSelected);
@@ -127,7 +126,6 @@ public class LocationController {
 		}
 
 		callLocationMenu();
-		input.close();
 
 	}
 
@@ -154,8 +152,8 @@ public class LocationController {
 		}
 		if (!exists) {
 			System.out.println("location does not exist");
-			input.close();
-			return;
+
+			locationMenu();
 		}
 		boolean success = locAction.delete(myLocation);
 
@@ -166,7 +164,6 @@ public class LocationController {
 		}
 
 		callLocationMenu();
-		input.close();
 
 	}
 
@@ -190,7 +187,6 @@ public class LocationController {
 				readString = null;
 			}
 		}
-		input.close();
 
 	}
 

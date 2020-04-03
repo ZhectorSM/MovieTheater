@@ -11,9 +11,9 @@ public class LoyalProgramController {
 
 		System.out.println("**LoyalProgram Menu**");
 		System.out.println("1 = Create new LoyalProgram");
-		System.out.println("2 = List LoyalProgram");
-		System.out.println("3 = Update a LoyalProgram");
-		System.out.println("4 = Delete a LoyalProgram");
+		System.out.println("2 = List Loyalty Program");
+		System.out.println("3 = Update a LoyaltyProgram");
+		System.out.println("4 = Delete a Loyalty Program");
 		System.out.println("0 = Go to Admin Menu");
 		System.out.println("Choose an option...");
 
@@ -41,14 +41,13 @@ public class LoyalProgramController {
 			break;
 		}
 
-		input.close();
 	}
 
 	public void lstLoyalPrograms() {
 
 		LoyalProgramAction catAction = new LoyalProgramAction();
 		List<LoyalPrograms> lstLoyalPrograms = catAction.read();
-		System.out.println("*List of LoyalProgram*");
+		System.out.println("*List of Loyalty Programs*");
 		for (LoyalPrograms cat : lstLoyalPrograms) {
 			System.out.println(cat.getIdLoyalProgram() + " " + cat.getDiscount());
 		}
@@ -60,8 +59,8 @@ public class LoyalProgramController {
 	public void addLoyalProgram() {
 		Scanner input = new Scanner(System.in);
 		LoyalPrograms myLoyalProgram = new LoyalPrograms();
-		System.out.println("*Add new LoyalProgram*");
-		System.out.println("Type the Discount persent:");
+		System.out.println("*Add new Loyalty Program*");
+		System.out.println("Type the Discount percent:");
 		myLoyalProgram.setDiscount(input.nextFloat());
 		input.nextLine();
 		System.out.println("Type the Minimum Points:");
@@ -78,7 +77,7 @@ public class LoyalProgramController {
 		}
 
 		callLoyalProgramMenu();
-		input.close();
+
 	}
 
 	public void updateLoyalProgram() {
@@ -105,8 +104,8 @@ public class LoyalProgramController {
 
 		if (!exists) {// Id the category does not exist
 			System.out.println("Loyalty Program does not exist.");
-			input.close();
-			return; // finish the method execution
+
+			LoyalProgramMenu();
 		}
 
 		myNewLoyalProgram.setIdLoyalProgram(idCatSelected);
@@ -114,7 +113,7 @@ public class LoyalProgramController {
 		System.out.println("Type the new Discount percent:");
 		myNewLoyalProgram.setDiscount(input.nextFloat());// Setting the new name
 		input.nextLine();
-		System.out.println("Type the new MinimumPoints:");
+		System.out.println("Type the new Minimum Points:");
 		myNewLoyalProgram.setMinimumPoints(input.nextInt());
 		input.nextLine();
 
@@ -127,7 +126,7 @@ public class LoyalProgramController {
 		}
 
 		callLoyalProgramMenu();
-		input.close();
+
 	}
 
 	public void deleteLoyalProgram() {
@@ -154,9 +153,9 @@ public class LoyalProgramController {
 		}
 
 		if (!exists) {// Id the category does not exist
-			System.out.println("LoyalProgram does not exist.");
-			input.close();
-			return; // finish the method execution
+			System.out.println("Loyalty Program does not exist.");
+
+			LoyalProgramMenu();
 		}
 
 		boolean success = catAction.delete(myLoyalProgram);// delete category
@@ -168,7 +167,7 @@ public class LoyalProgramController {
 		}
 
 		callLoyalProgramMenu();
-		input.close();
+
 	}
 
 	private void callLoyalProgramMenu() {
@@ -191,7 +190,6 @@ public class LoyalProgramController {
 				readString = null;
 			}
 		}
-		input.close();
 
 	}
 
