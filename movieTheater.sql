@@ -87,9 +87,43 @@ create table user (
 
 
 
+select * from auditorium;
 
 
+insert into location(id_location, location, address) values (1, "Scotiabank Theatre Vancouver", "900 Burrard Street Vancouver");
+insert into location(id_location, location, address) values (2, "Cineplex Cinemas Metropolis", "4700 Kingsway Burnaby");
+insert into location(id_location, location, address) values (3, "Cineplex Cambie St", "3440 Cambie St Vancouver");
+insert into location(id_location, location, address) values (4, "Cineplex Cinemas Chinatown", "88 W Pender St, 3rd Floor Vancouver");
+insert into location(id_location, location, address) values (5, "Vancity Theatre", "1181 SeymournSt Vancouver");
 
+
+select * from location;
+
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(1, 50, true, 1);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(2, 50, true, 1);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(3, 50, false, 1);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(4, 50, false, 1);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(5, 50, false, 1);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(6, 50, false, 2);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(7, 50, true, 2);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(8, 50, false, 2);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(9, 50, false, 2);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(10, 50, false, 2);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(11, 50, false, 3);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(12, 50, true, 3);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(13, 50, false, 3);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(14, 50, false, 3);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(15, 50, false, 3);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(16, 50, false, 4);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(17, 50, true, 4);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(18, 50, false, 4);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(19, 50, false, 4);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(20, 50, false, 4);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(21, 50, false, 5);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(22, 50, true, 5);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(23, 50, false, 5);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(24, 50, false, 5);
+insert into auditorium(id_auditorium, seat_total, vip, id_location) values(25, 50, false, 5);
 
 
 
