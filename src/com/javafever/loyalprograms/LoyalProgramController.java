@@ -3,7 +3,9 @@ package com.javafever.loyalprograms;
 import java.util.List;
 import java.util.Scanner;
 
-public class LoyalProgramController  {
+import com.javafever.main.MovieTheatreMain;
+
+public class LoyalProgramController {
 
 	public void LoyalProgramMenu() {
 
@@ -12,7 +14,7 @@ public class LoyalProgramController  {
 		System.out.println("2 = List LoyalProgram");
 		System.out.println("3 = Update a LoyalProgram");
 		System.out.println("4 = Delete a LoyalProgram");
-		System.out.println("0 = Go to Main Menu");
+		System.out.println("0 = Go to Admin Menu");
 		System.out.println("Choose an option...");
 
 		Scanner input = new Scanner(System.in);
@@ -32,7 +34,7 @@ public class LoyalProgramController  {
 			deleteLoyalProgram();
 			break;
 		case 0:
-
+			MovieTheatreMain.showAdminMenu();
 			break;
 		default:
 			LoyalProgramMenu();
@@ -62,18 +64,17 @@ public class LoyalProgramController  {
 		System.out.println("Type the Discount persent:");
 		myLoyalProgram.setDiscount(input.nextFloat());
 		input.nextLine();
-		System.out.println("Type the MinimumPoints:");
+		System.out.println("Type the Minimum Points:");
 		myLoyalProgram.setMinimumPoints(input.nextInt());
 		input.nextLine();
-
 
 		LoyalProgramAction catAction = new LoyalProgramAction();// Creating actions obj
 		boolean success = catAction.create(myLoyalProgram);// Executing operation
 
 		if (success) {// If the operation was succesful
-			System.out.println("LoyalProgram inserted.");
+			System.out.println("Loyalty Program inserted.");
 		} else {
-			System.out.println("LoyalProgram insertion failed.");
+			System.out.println("Loyalty Program insertion failed.");
 		}
 
 		callLoyalProgramMenu();
@@ -89,9 +90,9 @@ public class LoyalProgramController  {
 		List<LoyalPrograms> lstLoyalPrograms = catAction.read();
 
 		Scanner input = new Scanner(System.in);
-		System.out.println("*Update a LoyalProgram*");
+		System.out.println("*Update a Loyalty Program*");
 
-		System.out.println("Type the ID of the LoyalProgram:");
+		System.out.println("Type the ID of the Loyalty Program:");
 		int idCatSelected = input.nextInt();
 
 		// Looking for the category
@@ -103,14 +104,14 @@ public class LoyalProgramController  {
 		}
 
 		if (!exists) {// Id the category does not exist
-			System.out.println("LoyalProgram does not exist.");
+			System.out.println("Loyalty Program does not exist.");
 			input.close();
 			return; // finish the method execution
 		}
 
 		myNewLoyalProgram.setIdLoyalProgram(idCatSelected);
 
-		System.out.println("Type the new Discount persent:");
+		System.out.println("Type the new Discount percent:");
 		myNewLoyalProgram.setDiscount(input.nextFloat());// Setting the new name
 		input.nextLine();
 		System.out.println("Type the new MinimumPoints:");
@@ -120,9 +121,9 @@ public class LoyalProgramController  {
 		boolean success = catAction.update(myNewLoyalProgram);
 
 		if (success) {
-			System.out.println("LoyalProgram updated successfully.");
+			System.out.println("Loyalty Program updated successfully.");
 		} else {
-			System.out.println("LoyalProgram updated failed.");
+			System.out.println("Loyalty Program updated failed.");
 		}
 
 		callLoyalProgramMenu();
@@ -138,9 +139,9 @@ public class LoyalProgramController  {
 		List<LoyalPrograms> lstLoyalPrograms = catAction.read();
 
 		Scanner input = new Scanner(System.in);
-		System.out.println("*Delete a LoyalProgram*");
+		System.out.println("*Delete a Loyalty Program*");
 
-		System.out.println("Type the ID of the LoyalProgram:");
+		System.out.println("Type the ID of the Loyalty Program:");
 		int idCatSelected = input.nextInt();
 
 		// Looking for the category
@@ -161,16 +162,16 @@ public class LoyalProgramController  {
 		boolean success = catAction.delete(myLoyalProgram);// delete category
 
 		if (success) {
-			System.out.println("LoyalProgram deleted succcesfully");
+			System.out.println("Loyalty Program deleted succcesfully");
 		} else {
-			System.out.println("LoyalProgram deletion failed.");
+			System.out.println("Loyalty Program deletion failed.");
 		}
 
 		callLoyalProgramMenu();
 		input.close();
 	}
 
-	public void callLoyalProgramMenu() {
+	private void callLoyalProgramMenu() {
 		System.out.println();
 		System.out.println("ENTER to go to menu");
 		System.out.println();

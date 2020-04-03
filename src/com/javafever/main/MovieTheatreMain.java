@@ -5,14 +5,12 @@ import java.util.Scanner;
 
 import com.javafever.auditorium.AuditoriumController;
 import com.javafever.category.CategoryController;
+import com.javafever.customer.CustomerController;
 import com.javafever.location.LocationController;
-import com.javafever.movie.Movie;
-import com.javafever.movie.MovieAction;
+import com.javafever.loyalprograms.LoyalProgramController;
 import com.javafever.movie.MovieController;
-import com.javafever.theatreschedule.ScheduleAction;
 import com.javafever.theatreschedule.ScheduleController;
-import com.javafever.theatreschedule.TheatreSchedule;
-import com.javafever.ticket.Ticket;
+import com.javafever.ticket.TicketController;
 import com.javafever.user.User;
 import com.javafever.user.UserAction;
 
@@ -26,18 +24,19 @@ public class MovieTheatreMain {
 	}
 
 	public static void showMainMenu() {
-		System.out.println("1 Buy a Ticket as a Guest");
-		System.out.println("2 Log In");
+		System.out.println("1 Buy a Ticket");
+		System.out.println("2 Log In as Admin");
 		System.out.println("0 Exit");
 
 		System.out.println("Choose an option...");
 		Scanner input = new Scanner(System.in);
 		int userChoice = input.nextInt();
-
+		input.nextLine();
 		switch (userChoice) {
 
 		case 1:
-			buyTicket();
+			TicketController tkControl = new TicketController();
+			tkControl.buyTicket();
 			break;
 		case 2:
 			login();
@@ -59,9 +58,9 @@ public class MovieTheatreMain {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Type your user name ");
 		User user = new User();
-		user.setName(input.nextLine());
+		user.setName(input.nextLine().trim());
 		System.out.println("Type your password");
-		user.setPwd(input.nextLine());
+		user.setPwd(input.nextLine().trim());
 
 		// Get users of the database
 		UserAction catAction = new UserAction();
@@ -106,7 +105,7 @@ public class MovieTheatreMain {
 
 		Scanner input = new Scanner(System.in);
 		int adminChoice = input.nextInt();
-
+		input.nextLine();
 		switch (adminChoice) {
 		case 1:
 			CategoryController catControl = new CategoryController();
@@ -126,6 +125,8 @@ public class MovieTheatreMain {
 			audContol.auditoriumMenu();
 			break;
 		case 5:
+			CustomerController cusControl = new CustomerController();
+			cusControl.customerMenu();
 			break;
 
 		case 6:
@@ -134,7 +135,8 @@ public class MovieTheatreMain {
 			break;
 
 		case 7:
-
+			LoyalProgramController loyalControl = new LoyalProgramController();
+			loyalControl.LoyalProgramMenu();
 			break;
 		case 0:
 			showMainMenu();
@@ -148,6 +150,7 @@ public class MovieTheatreMain {
 
 	}
 
+	@Deprecated
 	public static void showUserMenu() {
 
 		System.out.println(">> User Menu <<");
@@ -160,12 +163,13 @@ public class MovieTheatreMain {
 
 		Scanner input = new Scanner(System.in);
 		int userChoice = input.nextInt();
-
+		input.nextLine();
 		switch (userChoice) {
 		case 1:
 			break;
 		case 2:
-			buyTicket();
+			TicketController tkControl = new TicketController();
+			tkControl.buyTicket();
 			break;
 		case 3:
 			showMainMenu();
@@ -177,50 +181,6 @@ public class MovieTheatreMain {
 		}
 
 		input.close();
-
-	}
-
-	public static void buyTicket() {
-
-		System.out.println("- Movies -");
-		MovieAction movAct = new MovieAction();
-		List<Movie> lstMovies = movAct.read();
-		for (Movie movie : lstMovies) {
-			System.out.println(movie.getIdMovie() + " " + movie.getMovieName());
-		}
-
-		Scanner input = new Scanner(System.in);
-		System.out.println("Choose a Movie (Type the Id):");
-		int userIdMovie = input.nextInt();
-		input.nextLine();
-
-		boolean movieExist = false;
-		for (Movie movie : lstMovies) {
-			if (userIdMovie == movie.getIdMovie()) {
-				movieExist = true;
-			}
-		}
-
-		// Set movie
-		Ticket myTicket = new Ticket();
-		if (movieExist) {
-			myTicket.setIdTicket(userIdMovie);
-		} else {
-			System.out.println("Movie does not exist");
-			buyTicket();
-		}
-
-		// Getting available schedule
-		ScheduleAction schAction = new ScheduleAction();
-		List<TheatreSchedule> lstSchedule = schAction.readByIdMovie(userIdMovie);
-
-		for (TheatreSchedule sch : lstSchedule) {
-			System.out.println(sch.getIdSchedule() + " " + sch.getShowtime());
-		}
-
-		// Filter the movies by id (lambda expression) example
-//				lstSchedule.stream().filter(sch -> sch.getIdMovie() == userIdMovie)
-//						.forEach(sch -> System.out.println(sch.getIdSchedule() + " " + sch.getShowtime()));
 
 	}
 

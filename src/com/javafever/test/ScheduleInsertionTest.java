@@ -14,7 +14,7 @@ public class ScheduleInsertionTest {
 		mySchedule.setIdAuditorium(1);
 		mySchedule.setIdMovie(3);
 		mySchedule.setPrice(14.45F);
-		mySchedule.setSeat(1);
+
 		System.out.println(mySchedule);// Printing info
 
 		ScheduleAction scheAction = new ScheduleAction();// Creating actions obj

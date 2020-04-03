@@ -56,7 +56,8 @@ public class AuditoriumController {
 		System.out.println("Type total seats of the auditorium");
 
 		Auditorium myAuditorium = new Auditorium();
-		myAuditorium.setSeatTotal(input.nextLine().trim());
+		myAuditorium.setSeatTotal(input.nextInt());
+		input.nextLine();
 
 		System.out.println("Type vip or not");
 		myAuditorium.setVip(input.nextBoolean());
@@ -145,8 +146,8 @@ public class AuditoriumController {
 		myNewAuditorium.setIdAuditorium(idAudSelected);
 
 		System.out.println("Type the total seats of the auditorium: ");
-		myNewAuditorium.setSeatTotal(input.nextLine().trim());
-
+		myNewAuditorium.setSeatTotal(input.nextInt());
+		input.nextLine();
 		System.out.println("true or false about vip: ");
 		myNewAuditorium.setVip(input.nextBoolean());
 

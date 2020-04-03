@@ -170,7 +170,7 @@ public class LocationController {
 
 	}
 
-	public void callLocationMenu() {
+	private void callLocationMenu() {
 		System.out.println();
 		System.out.println("ENTER to go to menu");
 		System.out.println();

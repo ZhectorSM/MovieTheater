@@ -4,11 +4,10 @@ public class Auditorium {
 
 	// Attributes
 	private int idAuditorium;
-	private String seatTotal;
+	private int seatTotal;
 	private boolean vip;
 	private int idLocation;
 
-	// Getter and setter
 	public int getIdAuditorium() {
 		return idAuditorium;
 	}
@@ -17,11 +16,11 @@ public class Auditorium {
 		this.idAuditorium = idAuditorium;
 	}
 
-	public String getSeatTotal() {
+	public int getSeatTotal() {
 		return seatTotal;
 	}
 
-	public void setSeatTotal(String seatTotal) {
+	public void setSeatTotal(int seatTotal) {
 		this.seatTotal = seatTotal;
 	}
 
@@ -41,19 +40,17 @@ public class Auditorium {
 		this.idLocation = idLocation;
 	}
 
-	// hashCode()
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + idAuditorium;
 		result = prime * result + idLocation;
-		result = prime * result + ((seatTotal == null) ? 0 : seatTotal.hashCode());
+		result = prime * result + seatTotal;
 		result = prime * result + (vip ? 1231 : 1237);
 		return result;
 	}
 
-	// equals
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -67,17 +64,13 @@ public class Auditorium {
 			return false;
 		if (idLocation != other.idLocation)
 			return false;
-		if (seatTotal == null) {
-			if (other.seatTotal != null)
-				return false;
-		} else if (!seatTotal.equals(other.seatTotal))
+		if (seatTotal != other.seatTotal)
 			return false;
 		if (vip != other.vip)
 			return false;
 		return true;
 	}
 
-	// toString()
 	@Override
 	public String toString() {
 		return "Auditorium [idAuditorium=" + idAuditorium + ", seatTotal=" + seatTotal + ", vip=" + vip
