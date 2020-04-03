@@ -70,7 +70,7 @@ public class ScheduleController {
 		System.out.println("Type the showtime: yyyy-MM-dd'T'HH:mm:ss");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 		String userdate = input.nextLine().trim();
-		input.nextLine();
+
 		LocalDateTime ldt = LocalDateTime.parse(userdate, formatter);
 		mySchedule.setShowtime(ldt);
 		System.out.println("Type the Id Auditorium:");
@@ -129,7 +129,7 @@ public class ScheduleController {
 		System.out.println("Type the showtime: yyyy-MM-dd'T'HH:mm:ss");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 		String userdate1 = input.nextLine().trim();
-		input.nextLine();
+
 		LocalDateTime ldt1 = LocalDateTime.parse(userdate1, formatter);
 		myNewSchedule.setShowtime(ldt1);
 		System.out.println("Type the new Id Category:");
@@ -203,7 +203,6 @@ public class ScheduleController {
 		System.out.println();
 		Scanner input = new Scanner(System.in);
 		String readString = input.nextLine().trim();
-		input.nextLine();
 		while (readString != null) {
 			System.out.println(readString);
 
