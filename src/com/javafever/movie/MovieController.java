@@ -66,6 +66,7 @@ public class MovieController {
 		Movie myMovie = new Movie();
 		System.out.println("Type the Movie name:");
 		myMovie.setMovieName(input.nextLine().trim());
+
 		System.out.println("Type the Id Category:");
 		myMovie.setIdCategory(input.nextInt());
 		input.nextLine();
