@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class DbConector {
 
 	private static java.sql.Connection conn;
-	private static final String URL = "jdbc:mysql://localhost:8889/movietheatre?serverTimezone=UTC";
-	private static final String USER = "root";
-	private static final String PWD = "Jcrf151681";
+	private static final String URL = "jdbc:mysql://localhost:3306/movietheatre?serverTimezone=UTC";
+	private static final String USER = "zHectorSM";
+	private static final String PWD = "zHectorSM";
 
 	private DbConector() {
 	}
@@ -23,7 +23,7 @@ public class DbConector {
 				conn = DriverManager.getConnection(URL, USER, PWD);
 				if (conn != null) {
 
-					System.out.println("Database connected succesfully.");
+					// System.out.println("Database connected succesfully.");
 
 				}
 
