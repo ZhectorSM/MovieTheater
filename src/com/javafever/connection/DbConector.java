@@ -11,7 +11,6 @@ public class DbConector {
 	private static final String USER = "root";
 	private static final String PWD = "Jcrf151681";
 
-
 	private DbConector() {
 	}
 
