@@ -47,7 +47,7 @@ public class CustomerController {
 
 		CustomerAction catAction = new CustomerAction();
 		List<Customer> lstCustomers = catAction.read();
-		System.out.println("*List of Custiomers*");
+		System.out.println("*List of Customers*");
 		for (Customer cat : lstCustomers) {
 			System.out.println(cat.getIdCustomer() + " " + cat.getFirstName() + " " + cat.getLastName());
 		}
