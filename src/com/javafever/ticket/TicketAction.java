@@ -129,7 +129,7 @@ public class TicketAction extends EntityActions<Ticket> {
 					"SELECT theatre_schedule.id_schedule, theatre_schedule.showtime, theatre_schedule.id_auditorium, movie.movie_name, theatre_schedule.price, auditorium.vip, location.address "
 							+ " FROM theatre_schedule inner join movie on theatre_schedule.id_movie = movie.id_movie "
 							+ " inner join auditorium on theatre_schedule.id_auditorium = auditorium.id_auditorium"
-							+ " inner join location on auditorium.id_auditorium = location.id_location"
+							+ " inner join location on auditorium.id_location = location.id_location"
 							+ " where theatre_schedule.id_movie = ?");// Prepare
 
 			ps.setInt(1, idMovie);
