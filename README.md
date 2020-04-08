@@ -27,7 +27,7 @@ Sell ticktes
   * MySQL database
     
 ### Contributors
-Sachiko Yokohama  
+Sachiko Yokoyama  
 Juan Carlos Rodriguez  
 Hiroaki Bandai  
 Hector Solares
