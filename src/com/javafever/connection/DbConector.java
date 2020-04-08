@@ -8,8 +8,8 @@ public class DbConector {
 
 	private static java.sql.Connection conn;
 	private static final String URL = "jdbc:mysql://localhost:3306/movietheatre?serverTimezone=UTC";
-	private static final String USER = "zHectorSM";
-	private static final String PWD = "zHectorSM";
+	private static final String USER = "root";
+	private static final String PWD = "sunny07&13";
 
 	private DbConector() {
 	}
