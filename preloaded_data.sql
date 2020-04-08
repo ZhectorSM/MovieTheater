@@ -1,3 +1,4 @@
+  
 -- Users
 insert into user (name,pwd,role) values ("hector","123","admin");
 insert into user (name,pwd,role) values ("aki","123","admin");
@@ -74,17 +75,17 @@ Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minu
 ,2019,182,"PG13");
 Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("The Irishman",2,"Martin Scorsese","Robert de Niro"
 ,2019,210,"R");
-Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("Jocker",3," Todd Phillips","Joaquin Phoenix"
+Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("Jocker",3," Todd Phillips","Joaquin Phoenix"
 ,2019,122,"R");
-Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("Star Wars: EpisodeVIII",4," Rian Johnson","Daisy Ridley"
+Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("Star Wars: EpisodeVIII",4," Rian Johnson","Daisy Ridley"
 ,2017,152,"PG13");
 Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("Avatar",1,"James Cameron","Zoe Saldana"
 ,2009,162,"PG13");
-Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("Good Fellas",5," Martin Scorsese","Ray Liotta"
+Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("Good Fellas",5," Martin Scorsese","Ray Liotta"
 ,1990,148,"R");
 Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("A Beautiful Mind",6,"Ron Howard","Russell Crow"
 ,2001,140,"PG13");
-Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("The Shawshank Redemption",1," Frank Darabont","Tim Robbinss"
+Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("The Shawshank Redemption",1," Frank Darabont","Tim Robbinss"
 ,1994,142,"R");
 Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("Forrest Gump",1,"Robert Zemeckis","Tom Hanks"
 ,1994,142,"PG13");
@@ -104,7 +105,7 @@ Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minu
 ,1968,164,"G");
 Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("COCO",10,"Adrián Molina","Ernesto de la Cruz"
 ,2017,109,"PG");
-Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("Monsters, Inc.",1," Pete Docter","Boo"
+Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("Monsters, Inc.",1," Pete Docter","Boo"
 ,2001,96,"G");
 Insert into movie (movie_name,Id_category,director,actor,movie_year,runtime_minutes,rate) values ("Samsara",1,"Ron Fricke","Hiroshi Ishiguro"
 ,2011,102,"G");
@@ -125,31 +126,3 @@ Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("20
 Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-11T15:30:00",10,6,"15.50");
 Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-11T19:00:00",11,8,"15.50");
 Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-11T23:00:00",12,9,"16.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-12T13:00:00",1,7,"10.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-12T16:00:00",2,7,"15.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-12T13:00:00",3,10,"10.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-12T16:00:00",4,10,"15.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-12T13:00:00",5,11,"10.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-12T16:00:00",6,11,"15.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-13T13:00:00",5,12,"10.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-13T23:59:00",6,12,"16.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-13T15:00:00",7,13,"15.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-13T23:59:00",8,13,"16.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-13T16:00:00",9,14,"15.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-13T23:59:00",10,14,"16.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-14T17:00:00",11,15,"15.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-14T23:59:00",12,15,"16.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-14T13:00:00",1,16,"10.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-14T23:59:00",1,16,"16.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-14T13:00:00",2,17,"10.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-14T21:00:00",3,17,"15.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-15T13:00:00",4,18,"10.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-15T21:00:00",5,18,"15.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-15T15:00:00",6,19,"15.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-15T23:59:00",7,19,"16.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-15T15:00:00",8,20,"15.50");
-Insert into theatre_schedule (showtime,id_auditorium,id_movie,price) values ("2020-04-15T23:59:00",9,20,"16.50");
-
-
-
-
